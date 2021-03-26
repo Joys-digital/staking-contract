@@ -1,0 +1,281 @@
+{
+  "contractName": "SupplyOrderTypes",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/oem/work/joys/staking-contract/contracts/supplyOrderPrototype/SupplyOrderTypes.sol\":\"SupplyOrderTypes\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/oem/work/joys/staking-contract/contracts/supplyOrderPrototype/SupplyOrderTypes.sol\":{\"keccak256\":\"0xb7184831f8fe7b486c4d90b93f9db1053dac50b615601d934e57a322028728f4\",\"urls\":[\"bzz-raw://95b0027492ab862d7defeeeae4584c6446680809325ed94ab84edf87ec74a330\",\"dweb:/ipfs/QmYo9RGHC3rjkVnxMh1H8XKaNZLWWDYRLQh2dBgG34N2vZ\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.6.12;\npragma experimental ABIEncoderV2;\n\ninterface SupplyOrderTypes {\n\n    struct ContractRule {\n        uint256 amount;\n        uint256 discount;\n    }\n}\n\n",
+  "sourcePath": "/home/oem/work/joys/staking-contract/contracts/supplyOrderPrototype/SupplyOrderTypes.sol",
+  "ast": {
+    "absolutePath": "/home/oem/work/joys/staking-contract/contracts/supplyOrderPrototype/SupplyOrderTypes.sol",
+    "exportedSymbols": {
+      "SupplyOrderTypes": [
+        1970
+      ]
+    },
+    "id": 1971,
+    "license": null,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1963,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:9"
+      },
+      {
+        "id": 1964,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "25:33:9"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 1970,
+        "linearizedBaseContracts": [
+          1970
+        ],
+        "name": "SupplyOrderTypes",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "SupplyOrderTypes.ContractRule",
+            "id": 1969,
+            "members": [
+              {
+                "constant": false,
+                "id": 1966,
+                "mutability": "mutable",
+                "name": "amount",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 1969,
+                "src": "124:14:9",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 1965,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "124:7:9",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1968,
+                "mutability": "mutable",
+                "name": "discount",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 1969,
+                "src": "148:16:9",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 1967,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "148:7:9",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "ContractRule",
+            "nodeType": "StructDefinition",
+            "scope": 1970,
+            "src": "94:77:9",
+            "visibility": "public"
+          }
+        ],
+        "scope": 1971,
+        "src": "60:113:9"
+      }
+    ],
+    "src": "0:175:9"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/home/oem/work/joys/staking-contract/contracts/supplyOrderPrototype/SupplyOrderTypes.sol",
+      "exportedSymbols": {
+        "SupplyOrderTypes": [
+          1970
+        ]
+      },
+      "license": null
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".12"
+          ]
+        },
+        "id": 1963,
+        "name": "PragmaDirective",
+        "src": "0:24:9"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 1964,
+        "name": "PragmaDirective",
+        "src": "25:33:9"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            1970
+          ],
+          "name": "SupplyOrderTypes",
+          "scope": 1971
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "SupplyOrderTypes.ContractRule",
+              "name": "ContractRule",
+              "scope": 1970,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "overrides": null,
+                  "scope": 1969,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 1965,
+                    "name": "ElementaryTypeName",
+                    "src": "124:7:9"
+                  }
+                ],
+                "id": 1966,
+                "name": "VariableDeclaration",
+                "src": "124:14:9"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "discount",
+                  "overrides": null,
+                  "scope": 1969,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 1967,
+                    "name": "ElementaryTypeName",
+                    "src": "148:7:9"
+                  }
+                ],
+                "id": 1968,
+                "name": "VariableDeclaration",
+                "src": "148:16:9"
+              }
+            ],
+            "id": 1969,
+            "name": "StructDefinition",
+            "src": "94:77:9"
+          }
+        ],
+        "id": 1970,
+        "name": "ContractDefinition",
+        "src": "60:113:9"
+      }
+    ],
+    "id": 1971,
+    "name": "SourceUnit",
+    "src": "0:175:9"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.3",
+  "updatedAt": "2021-03-26T08:17:21.015Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

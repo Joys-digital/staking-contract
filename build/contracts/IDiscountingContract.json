@@ -1,0 +1,396 @@
+{
+  "contractName": "IDiscountingContract",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "getSuppliers",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "supplierAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "needAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "discountPercent",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct DiscountingTypes.Supplier[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"getSuppliers\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"supplierAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"needAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"discountPercent\",\"type\":\"uint256\"}],\"internalType\":\"struct DiscountingTypes.Supplier[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/oem/work/joys/staking-contract/contracts/discounting/IDiscountingContract.sol\":\"IDiscountingContract\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/oem/work/joys/staking-contract/contracts/discounting/DiscountingTypes.sol\":{\"keccak256\":\"0x81fa6eaebf40a621317010acf4860aedef20db1ec202036bf3e9a6e636db9927\",\"urls\":[\"bzz-raw://481756d4f503c9d45b07e921282bb1e657c16448d3254fa8779b37d3ac15dcd4\",\"dweb:/ipfs/QmSawU41kUgm7gn4FvTJZ4yCvsT8juGVqwLjBQXZirZqrH\"]},\"/home/oem/work/joys/staking-contract/contracts/discounting/IDiscountingContract.sol\":{\"keccak256\":\"0x5b2abfd565e849a265a73e8e3a77c6f6b007b6817e7933eb40dc7968162e38a8\",\"urls\":[\"bzz-raw://c5efb8547f6c0375da306afa0cb5810d02d1dfad966437ae86f8ebae15a4e979\",\"dweb:/ipfs/QmSVXYAvtRkqp1LLQjwb1BsLDJy8ZGeADHhc8bbvjCjNCg\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.6.12;\npragma experimental ABIEncoderV2;\n\nimport \"./DiscountingTypes.sol\";\n\ninterface IDiscountingContract is DiscountingTypes {\n\n    function getSuppliers() external view returns(Supplier[] memory);\n\n}\n\n",
+  "sourcePath": "/home/oem/work/joys/staking-contract/contracts/discounting/IDiscountingContract.sol",
+  "ast": {
+    "absolutePath": "/home/oem/work/joys/staking-contract/contracts/discounting/IDiscountingContract.sol",
+    "exportedSymbols": {
+      "IDiscountingContract": [
+        1345
+      ]
+    },
+    "id": 1346,
+    "license": null,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1334,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:5"
+      },
+      {
+        "id": 1335,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "25:33:5"
+      },
+      {
+        "absolutePath": "/home/oem/work/joys/staking-contract/contracts/discounting/DiscountingTypes.sol",
+        "file": "./DiscountingTypes.sol",
+        "id": 1336,
+        "nodeType": "ImportDirective",
+        "scope": 1346,
+        "sourceUnit": 1333,
+        "src": "60:32:5",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 1337,
+              "name": "DiscountingTypes",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1332,
+              "src": "128:16:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_DiscountingTypes_$1332",
+                "typeString": "contract DiscountingTypes"
+              }
+            },
+            "id": 1338,
+            "nodeType": "InheritanceSpecifier",
+            "src": "128:16:5"
+          }
+        ],
+        "contractDependencies": [
+          1332
+        ],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 1345,
+        "linearizedBaseContracts": [
+          1345,
+          1332
+        ],
+        "name": "IDiscountingContract",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "43516832",
+            "id": 1344,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getSuppliers",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 1339,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "173:2:5"
+            },
+            "returnParameters": {
+              "id": 1343,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1342,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1344,
+                  "src": "198:17:5",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_Supplier_$1320_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "struct DiscountingTypes.Supplier[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 1340,
+                      "name": "Supplier",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 1320,
+                      "src": "198:8:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Supplier_$1320_storage_ptr",
+                        "typeString": "struct DiscountingTypes.Supplier"
+                      }
+                    },
+                    "id": 1341,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "198:10:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_Supplier_$1320_storage_$dyn_storage_ptr",
+                      "typeString": "struct DiscountingTypes.Supplier[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "197:19:5"
+            },
+            "scope": 1345,
+            "src": "152:65:5",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1346,
+        "src": "94:126:5"
+      }
+    ],
+    "src": "0:222:5"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/home/oem/work/joys/staking-contract/contracts/discounting/IDiscountingContract.sol",
+      "exportedSymbols": {
+        "IDiscountingContract": [
+          1345
+        ]
+      },
+      "license": null
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".12"
+          ]
+        },
+        "id": 1334,
+        "name": "PragmaDirective",
+        "src": "0:24:5"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 1335,
+        "name": "PragmaDirective",
+        "src": "25:33:5"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 1333,
+          "absolutePath": "/home/oem/work/joys/staking-contract/contracts/discounting/DiscountingTypes.sol",
+          "file": "./DiscountingTypes.sol",
+          "scope": 1346,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 1336,
+        "name": "ImportDirective",
+        "src": "60:32:5"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "contractDependencies": [
+            1332
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            1345,
+            1332
+          ],
+          "name": "IDiscountingContract",
+          "scope": 1346
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "DiscountingTypes",
+                  "referencedDeclaration": 1332,
+                  "type": "contract DiscountingTypes"
+                },
+                "id": 1337,
+                "name": "UserDefinedTypeName",
+                "src": "128:16:5"
+              }
+            ],
+            "id": 1338,
+            "name": "InheritanceSpecifier",
+            "src": "128:16:5"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "43516832",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getSuppliers",
+              "overrides": null,
+              "scope": 1345,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1339,
+                "name": "ParameterList",
+                "src": "173:2:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 1344,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "struct DiscountingTypes.Supplier[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "struct DiscountingTypes.Supplier[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "contractScope": null,
+                              "name": "Supplier",
+                              "referencedDeclaration": 1320,
+                              "type": "struct DiscountingTypes.Supplier"
+                            },
+                            "id": 1340,
+                            "name": "UserDefinedTypeName",
+                            "src": "198:8:5"
+                          }
+                        ],
+                        "id": 1341,
+                        "name": "ArrayTypeName",
+                        "src": "198:10:5"
+                      }
+                    ],
+                    "id": 1342,
+                    "name": "VariableDeclaration",
+                    "src": "198:17:5"
+                  }
+                ],
+                "id": 1343,
+                "name": "ParameterList",
+                "src": "197:19:5"
+              }
+            ],
+            "id": 1344,
+            "name": "FunctionDefinition",
+            "src": "152:65:5"
+          }
+        ],
+        "id": 1345,
+        "name": "ContractDefinition",
+        "src": "94:126:5"
+      }
+    ],
+    "id": 1346,
+    "name": "SourceUnit",
+    "src": "0:222:5"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.3",
+  "updatedAt": "2021-03-26T08:17:20.997Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
