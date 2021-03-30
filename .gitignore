@@ -28,5 +28,6 @@ idea/
 
 # Other
 
+build/
 bin/
 
