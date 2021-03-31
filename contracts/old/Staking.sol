@@ -17,6 +17,7 @@ contract Staking {
     mapping(address => int256) internal _moneybox;
 
     constructor(uint256 emissionSpeed) public payable {
+        require(emissionSpeed > 0);
         _emissionSpeed = emissionSpeed;
         _lastDistributionTime = block.timestamp;
     }
