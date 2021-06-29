@@ -1,0 +1,376 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Contract</title>
+
+
+<link rel="stylesheet" type="text/css" href="semantic.min.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="semantic.min.js"></script>
+
+
+    <link
+        href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAOVBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAABHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcBYCzAAAAE3RSTlPkZE7emXPXAMzHihi+QAwqs6mhB70WSgAAAQFJREFUOMuFk1mSwyAMRAUWhH3J/Q8bFikxNp7pn7hKL12qbgGvfwS/T6Utqfgd4DUYAt5qBziAgwwQ8x3I0DQtEFHdgdqBYVEbgPEKRBhqe4Y+R5cugJ0AtA0HgHIFBM1BT4Nm4RfAHCzFiguAhqQekvQ0D+kpajUB8dhFCn1e/ihLdIAWc3nXRTEGKXX+WIFoDP2xfq3We0A3f+WyzAnIM7tU+jZyA5y3/QVyA3xYI70BjkNfy5IsoVlurZtKxsC9g1zLonm1mi/nsoMkA8unFa9luWlgyaLecogdGFd/dMBvHg5iGYBpc7eJOuObXt4BOm0fbyDAwPZtvrxgnS/3AwT9GsisQa84AAAAAElFTkSuQmCC"
+        rel="icon">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Mono);
+
+        @media only screen and (max-width:767px) {
+
+            [class*="computer only"]:not(.mobile),
+            [class*="large screen only"]:not(.mobile),
+            [class*="mobile hidden"],
+            [class*="or lower hidden"],
+            [class*="tablet only"]:not(.mobile),
+            [class*="widescreen only"]:not(.mobile) {
+                display: none !important
+            }
+        }
+
+        @media only screen and (min-width:768px) and (max-width:991px) {
+
+            [class*="computer only"]:not(.tablet),
+            [class*="large screen only"]:not(.tablet),
+            [class*="mobile only"]:not(.tablet),
+            [class*="or lower hidden"]:not(.mobile),
+            [class*="tablet hidden"],
+            [class*="widescreen only"]:not(.tablet) {
+                display: none !important
+            }
+        }
+
+        @media only screen and (min-width:992px) and (max-width:1199px) {
+
+            [class*="computer hidden"],
+            [class*="large screen only"]:not(.computer),
+            [class*="mobile only"]:not(.computer),
+            [class*="or lower hidden"]:not(.tablet):not(.mobile),
+            [class*="tablet only"]:not(.computer),
+            [class*="widescreen only"]:not(.computer) {
+                display: none !important
+            }
+        }
+
+        @media only screen and (min-width:1200px) and (max-width:1919px) {
+
+            [class*="computer only"]:not([class*="large screen"]),
+            [class*="large screen hidden"],
+            [class*="mobile only"]:not([class*="large screen"]),
+            [class*="or lower hidden"]:not(.computer):not(.tablet):not(.mobile),
+            [class*="tablet only"]:not([class*="large screen"]),
+            [class*="widescreen only"]:not([class*="large screen"]) {
+                display: none !important
+            }
+        }
+
+        @media only screen and (min-width:1920px) {
+
+            [class*="computer only"]:not([class*=widescreen]),
+            [class*="large screen only"]:not([class*=widescreen]),
+            [class*="mobile only"]:not([class*=widescreen]),
+            [class*="tablet only"]:not([class*=widescreen]),
+            [class*="widescreen hidden"],
+            [class*="widescreen or lower hidden"] {
+                display: none !important
+            }
+        }
+
+        .ui.header,
+        .ui.menu,
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: Roboto, sans-serif
+        }
+
+        pre.wrap {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word
+        }
+
+        code {
+            padding: 0 .3em
+        }
+
+        code,
+        pre {
+            font-family: Roboto Mono, monospace;
+            border: 1px solid rgba(0, 0, 0, .05);
+            background: rgba(0, 0, 0, .01)
+        }
+
+        code>code,
+        pre>code {
+            border: none;
+            background: none
+        }
+
+        pre {
+            padding: 1em
+        }
+
+        .vertical.menu .item {
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .vertical.menu .item.active {
+            overflow: visible
+        }
+
+        .pusher {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column
+        }
+
+        .pusher>.container:not(.footer) {
+            flex: 1
+        }
+
+        .pusher>.footer {
+            height: auto;
+            margin-top: 2em
+        }
+
+        .header code.signature {
+            font-size: .6em
+        }
+
+        .hljs {
+            display: block;
+            overflow-x: auto;
+            padding: .5em;
+            color: #383a42;
+            background: #fafafa
+        }
+
+        .hljs-comment,
+        .hljs-quote {
+            color: #a0a1a7;
+            font-style: italic
+        }
+
+        .hljs-doctag,
+        .hljs-formula,
+        .hljs-keyword {
+            color: #a626a4
+        }
+
+        .hljs-deletion,
+        .hljs-name,
+        .hljs-section,
+        .hljs-selector-tag,
+        .hljs-subst {
+            color: #e45649
+        }
+
+        .hljs-literal {
+            color: #0184bb
+        }
+
+        .hljs-addition,
+        .hljs-attribute,
+        .hljs-meta-string,
+        .hljs-regexp,
+        .hljs-string {
+            color: #50a14f
+        }
+
+        .hljs-built_in,
+        .hljs-class .hljs-title {
+            color: #c18401
+        }
+
+        .hljs-attr,
+        .hljs-number,
+        .hljs-selector-attr,
+        .hljs-selector-class,
+        .hljs-selector-pseudo,
+        .hljs-template-variable,
+        .hljs-type,
+        .hljs-variable {
+            color: #986801
+        }
+
+        .hljs-bullet,
+        .hljs-link,
+        .hljs-meta,
+        .hljs-selector-id,
+        .hljs-symbol,
+        .hljs-title {
+            color: #4078f2
+        }
+
+        .hljs-emphasis {
+            font-style: italic
+        }
+
+        .hljs-strong {
+            font-weight: 700
+        }
+
+        .hljs-link {
+            text-decoration: underline
+        }
+    </style>
+</head>
+
+<body>
+    <div id="react-mount">
+        <div style="padding-top:60px;" class="pusher" data-reactroot="" data-reactid="1"
+            data-react-checksum="-448656835">
+            <div class="ui top fixed inverted menu" data-reactid="2">
+                <div class="ui container" data-reactid="3"><a class="header item" href="/doxity-demo/" data-reactid="4">
+                        <!-- react-text: 5 -->
+                        <!-- /react-text -->
+                        <!-- <div class="ui grey label" data-reactid="6">0.0.1</div> -->
+                    </a>
+                    <div class="item mobile hidden" data-reactid="7">Solidity Contract Documentation</div>
+                </div>
+            </div>
+            
+
+
+
+
+
+<!-- <div class="ui fluid tabular vertical menu">
+    <a class="item active" data-tab="first">First</a>
+    <a class="item" data-tab="second">Second</a>
+    <a class="item" data-tab="third">Third</a>
+</div>
+<div class="ui bottom attached tab segment active" data-tab="first">
+    First
+</div>
+<div class="ui bottom attached tab segment" data-tab="second">
+    Second
+</div>
+<div class="ui bottom attached tab segment" data-tab="third">
+    Third
+</div> -->
+
+
+
+            <div class="ui container" data-reactid="12">
+                <div class="ui grid" data-reactid="13">
+                    <div class="four wide column mobile hidden">
+                        <div class="ui fluid tabular vertical menu" id="contracts-menu">
+                            <!-- <a class="item active" data-tab="first">First</a>
+                            <a class="item" data-tab="second">Second</a>
+                            <a class="item" data-tab="third">Third</a> -->
+                        </div>
+                                                    <!-- <div class="ui bottom attached tab segment active" data-tab="first">
+                                                        First
+                                                    </div>
+                                                    <div class="ui bottom attached tab segment" data-tab="second">
+                                                        Second
+                                                    </div>
+                                                    <div class="ui bottom attached tab segment" data-tab="third">
+                                                        Third
+                                                    </div> -->
+                    </div>
+                    <div class="stretched twelve wide computer sixteen wide mobile twelve wide tablet column" data-reactid="19">
+                        <div id="generatedDocData" class="contract" data-reactid="20" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui container footer" data-reactid="190">
+                <div class="ui small top attached compact secondary segment" data-reactid="191">
+                    <div class="ui stackable grid" data-reactid="192">
+                        <div class="row" data-reactid="193">
+                            <div class="six wide column" data-reactid="194"><b data-reactid="195">
+                                    <!-- react-text: 196 -->©
+                                    <!-- /react-text -->
+                                    <!-- react-text: 197 -->Alexey Zhdanov & Chris Hitchcott
+                                    <!-- /react-text --></b><!-- react-text: 198 --> -
+                                <!-- /react-text -->
+                                <!-- /react-text -->
+                                <!-- react-text: 201 -->2021
+                                <!-- /react-text -->
+                            </div>
+                            <div class="right aligned ten wide column" data-reactid="202">
+                                <!-- react-text: 203 -->Built using
+                                <!-- /react-text --><b data-reactid="204"> <a href="https://github.com/OpenZeppelin/solidity-docgen">Solidity-docgen</a>
+                                    <!-- react-text: 205 -->
+                                    <!-- /react-text --></b></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        function createElementFromHTML(htmlString) {
+                var div = document.createElement('div');
+                div.innerHTML = htmlString.trim();
+
+                return div.firstChild;
+            }
+
+        var request = new XMLHttpRequest();
+        request.open('GET', './generated/index.html', false);
+        request.send(null);
+
+        let result;
+        if (request.status === 200) {
+            result = request.responseText;
+        }
+        
+        const body = document.getElementById("generatedDocData");
+        const generatedHtml = document.createElement("div");
+        generatedHtml.innerHTML = result;
+
+        const contracts = generatedHtml.getElementsByClassName('contract');
+        for (let i = 0; i < contracts.length; i++) {
+            const contract = contracts[i];
+            const menu = document.getElementById('contracts-menu');
+            
+
+            const contractName = contract.getAttribute('contract-name');
+            let newNode;
+            if (i != 0) {
+                newNode = createElementFromHTML(`<a class="item" data-tab="${contractName}">${contractName}</a>`);
+            } else {
+                newNode = createElementFromHTML(`<a class="item active" data-tab="${contractName}">${contractName}</a>`);
+            }
+            menu.appendChild(newNode);
+
+            let newContractNode;
+            if (i != 0) {
+                newContractNode = createElementFromHTML(`<div class="ui bottom attached tab segment" data-tab="${contractName}">${contract.innerHTML}</div>`);
+            } else {
+                newContractNode = createElementFromHTML(`<div class="ui bottom attached tab segment active" data-tab="${contractName}">${contract.innerHTML}</div>`);
+            }
+            body.appendChild(newContractNode);
+        }
+
+        // body.innerHTML = result;
+
+        // for (const contract in contracts) {
+        //     const menu = document.getElementById('contracts-menu');
+        //     let newNode = document.createElement("div");
+        //     console.log(contract.);
+        //     // newNode.innerHTML = ``;
+        //     // menu
+        // }
+                $('.menu .item')
+                        .tab()
+                        ;
+    </script>
+</body>
+
+</html>

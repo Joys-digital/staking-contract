@@ -1,0 +1,245 @@
+{{#if natspec.devdoc}}
+
+<div class="contract" contract-name="{{name}}">
+
+
+    {{!-- {{log this.astNode.baseContracts}} --}}
+    {{!-- {{log this.file.ast.absolutePath}} --}}
+    {{!-- {{log this.astNode.contractKind}}
+    {{!-- {{log this.astNode.abstract}} --}}
+    {{!-- {{log ownFunctions}} --}}
+    <h2 class="ui left floated header">
+        <!-- react-text: 929 -->{{name}}
+        <!-- /react-text -->
+        <div class="sub header">
+            <!-- react-text: 931 -->{{this.file.ast.absolutePath}}
+            <!-- /react-text -->
+        </div>
+        {{#if this.astNode.baseContracts}}
+        <div class="sub header">
+            <!-- react-text: 931 -->Inherited from {{#each this.astNode.baseContracts}}{{#if (ne @index 0)}}, {{/if}}{{baseName.name}}{{/each}}
+            <!-- /react-text -->
+        </div>
+        {{/if}}
+    </h2>
+    <div class="ui hidden divider" style="clear: both;"></div>
+    <h4>{{natspec.devdoc}}</h4>
+    <div class="methods">
+
+
+        {{#each ownFunctions}}
+        {{#if (eq astNode.kind "constructor")}}
+        <div class="ui red segment">
+            <div class="ui red right ribbon label">
+                <!-- react-text: 3256 -->constructor
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>{{name}}</code>
+                <code class="signature">{{visibility}}</code></h3>
+            <div>
+                <p>
+                    {{{natspec.devdoc}}}
+                </p>
+            </div>
+            {{#if (or args outputs)}}
+            <table class="ui definition table">
+                <tbody class="">
+                    {{#if args}}
+                    {{#each this.astNode.parameters.parameters}}
+                    <tr class="positive">
+                        <td {{#if (eq @index 0)}} rowspan="{{../args.length}}" {{else}} style="display:none;" {{/if}}
+                            class="" data-reactid="171">Inputs</td>
+                        <td class="" data-reactid="88">{{typeDescriptions.typeString}}</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    {{#if name}}<code>{{name}}</code>{{/if}}
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    {{#if ../natspec.params}} {{#with (lookup ../natspec.params @index) }}
+                                    {{description}}{{/with}}{{/if}}
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+
+                    {{#if outputs}}
+                    {{#each this.astNode.returnParameters.parameters}}
+                    <tr class="negative">
+                        <td {{#if (eq @index 0)}} rowspan="{{../args.length}}" {{else}} style="display:none;" {{/if}}
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">{{typeDescriptions.typeString}}</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    {{#if name}}<code>{{name}}</code>{{/if}}
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    {{#if ../natspec.returns}} {{#with (lookup ../natspec.returns @index) }}
+                                    {{description}}{{/with}}{{/if}}
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                </tbody>
+            </table>
+            {{/if}}
+        </div>
+        {{/if}}
+        {{#if (and (or (eq visibility "public") (eq visibility "external"))(eq astNode.kind "function"))}}
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->{{astNode.stateMutability}} function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>{{name}}</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">{{this.astNode.functionSelector}}</code>
+                <code class="signature">{{visibility}}</code>
+                {{#each astNode.modifiers}}
+                <code class="signature">{{this.modifierName.name}}</code>
+                {{/each}}
+            </h3>
+            <div>
+                <p>
+                    {{{natspec.devdoc}}}
+                </p>
+            </div>
+            {{#if (or args outputs)}}
+            <table class="ui definition table">
+                <tbody class="">
+                    {{#if args}}
+                    {{#each this.astNode.parameters.parameters}}
+                    <tr class="positive">
+                        <td {{#if (eq @index 0)}} rowspan="{{../args.length}}" {{else}} style="display:none;" {{/if}}
+                            class="" data-reactid="171">Inputs</td>
+                        <td class="" data-reactid="88">{{typeDescriptions.typeString}}</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    {{#if name}}<code>{{name}}</code>{{/if}}
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    {{#if ../natspec.params}} {{#with (lookup ../natspec.params @index) }}
+                                    {{description}}{{/with}}{{/if}}
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+
+                    {{#if outputs}}
+                    {{#each this.astNode.returnParameters.parameters}}
+                    <tr class="negative">
+                        <td {{#if (eq @index 0)}} rowspan="{{../outputs.length}}" {{else}} style="display:none;" {{/if}}
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">{{typeDescriptions.typeString}}</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    {{#if name}}<code>{{name}}</code>{{/if}}
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    {{#if ../natspec.returns}} {{#with (lookup ../natspec.returns @index) }}
+                                    {{description}}{{/with}}{{/if}}
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                </tbody>
+            </table>
+            {{/if}}
+        </div>
+        {{/if}}
+        {{/each}}
+        {{#each ownEvents}}
+        <div class="ui blue segment">
+            <div class="ui blue right ribbon label">
+                <!-- react-text: 3256 -->event
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>{{name}}</code>
+            </h3>
+            <div>
+                <p>
+                    {{{natspec.devdoc}}}
+                </p>
+            </div>
+
+            <table class="ui definition table">
+                <tbody class="">
+                    {{#if this.astNode.parameters.parameters}}
+                    {{#each this.astNode.parameters.parameters}}
+                    <tr class="positive">
+                        <td {{#if (eq @index 0)}} rowspan="{{../args.length}}" {{else}} style="display:none;" {{/if}}
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">{{typeDescriptions.typeString}}</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    {{#if name}}<code>{{name}}</code>{{/if}}
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    {{#if ../natspec.params}} {{#with (lookup ../natspec.params @index) }}
+                                    {{description}}{{/with}}{{/if}}
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                </tbody>
+            </table>
+
+        </div>
+        {{/each}}
+
+        {{#each modifiers}}
+        {{!-- {{log this}} --}}
+        <div class="ui teal segment">
+            <div class="ui teal right ribbon label">
+                <!-- react-text: 3256 -->modifier
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>{{name}}</code>
+            </h3>
+            <div>
+                <p>
+                    {{{natspec.devdoc}}}
+                </p>
+            </div>
+
+        </div>
+        {{/each}}
+
+        {{!-- {{ log this }} --}}
+    </div>
+</div>
+{{/if}}

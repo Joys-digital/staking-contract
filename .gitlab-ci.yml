@@ -1,0 +1,27 @@
+image: node:15
+
+stages:
+  - build
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+build_contract:
+  stage: build
+  script:
+    - npm install -g truffle
+    - npm i --save-dev
+    - npm run build
+
+pages:
+  stage: deploy
+  script:
+    - mkdir public
+    - mv docs/* public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
