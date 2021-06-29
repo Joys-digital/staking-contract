@@ -1,254 +1,25 @@
 
 
 
-<div class="contract" contract-name="Ownable">
 
+
+<div class="contract" contract-name="JoysStaking">
 
 
     <h2 class="ui left floated header">
-        <!-- react-text: 929 -->Ownable
+        <!-- react-text: 929 -->JoysStaking
         <!-- /react-text -->
         <div class="sub header">
-            <!-- react-text: 931 -->contracts/Ownable.sol
+            <!-- react-text: 931 -->contracts/main/JoysStaking.sol
+            <!-- /react-text -->
+        </div>
+        <div class="sub header">
+            <!-- react-text: 931 -->Inherited from Stakeholder, ReentrancyGuard
             <!-- /react-text -->
         </div>
     </h2>
     <div class="ui hidden divider" style="clear: both;"></div>
-    <h4>Contract module which provides a basic access control mechanism, where
-there is an account (an owner) that can be granted exclusive access to
-specific functions.
-
-By default, the owner account will be the one that deploys the contract. This
-can later be changed with {transferOwnership}.
-
-This module is used through inheritance. It will make available the modifier
-`onlyOwner`, which can be applied to your functions to restrict their use to
-the owner.</h4>
-    <div class="methods">
-
-
-        <div class="ui red segment">
-            <div class="ui red right ribbon label">
-                <!-- react-text: 3256 -->constructor
-                <!-- /react-text -->
-            </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>constructor</code>
-                <code class="signature">internal</code></h3>
-            <div>
-                <p>
-                    Initializes the contract setting the deployer as the initial owner.
-                </p>
-            </div>
-            <table class="ui definition table">
-                <tbody class="">
-
-                </tbody>
-            </table>
-        </div>
-        <div class="ui violet segment">
-            <div class="ui violet right ribbon label">
-                <!-- react-text: 3256 -->view function
-                <!-- /react-text -->
-            </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>owner</code>
-                <!-- react-text: 3259 -->
-                <!-- /react-text --><code class="signature">8da5cb5b</code>
-                <code class="signature">public</code>
-            </h3>
-            <div>
-                <p>
-                    Returns the address of the current owner.
-                </p>
-            </div>
-            <table class="ui definition table">
-                <tbody class="">
-
-                    <tr class="negative">
-                        <td  rowspan="0" 
-                            class="" data-reactid="171">Outputs</td>
-                        <td class="" data-reactid="88">address</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="ui violet segment">
-            <div class="ui violet right ribbon label">
-                <!-- react-text: 3256 -->nonpayable function
-                <!-- /react-text -->
-            </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>renounceOwnership</code>
-                <!-- react-text: 3259 -->
-                <!-- /react-text --><code class="signature">715018a6</code>
-                <code class="signature">public</code>
-                <code class="signature">onlyOwner</code>
-            </h3>
-            <div>
-                <p>
-                    Leaves the contract without owner. It will not be possible to call
-`onlyOwner` functions anymore. Can only be called by the current owner.
-
-NOTE: Renouncing ownership will leave the contract without an owner,
-thereby removing any functionality that is only available to the owner.
-                </p>
-            </div>
-            <table class="ui definition table">
-                <tbody class="">
-
-                </tbody>
-            </table>
-        </div>
-        <div class="ui violet segment">
-            <div class="ui violet right ribbon label">
-                <!-- react-text: 3256 -->nonpayable function
-                <!-- /react-text -->
-            </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>transferOwnership</code>
-                <!-- react-text: 3259 -->
-                <!-- /react-text --><code class="signature">f2fde38b</code>
-                <code class="signature">public</code>
-                <code class="signature">onlyOwner</code>
-            </h3>
-            <div>
-                <p>
-                    Transfers ownership of the contract to a new account (`newOwner`).
-Can only be called by the current owner.
-                </p>
-            </div>
-            <table class="ui definition table">
-                <tbody class="">
-                    <tr class="positive">
-                        <td  rowspan="1" 
-                            class="" data-reactid="171">Inputs</td>
-                        <td class="" data-reactid="88">address</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>newOwner</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-        <div class="ui blue segment">
-            <div class="ui blue right ribbon label">
-                <!-- react-text: 3256 -->event
-                <!-- /react-text -->
-            </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>OwnershipTransferred</code>
-            </h3>
-            <div>
-                <p>
-                    
-                </p>
-            </div>
-
-            <table class="ui definition table">
-                <tbody class="">
-                    <tr class="positive">
-                        <td  rowspan="2" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">address</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>previousOwner</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">address</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>newOwner</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
-
-        
-        <div class="ui teal segment">
-            <div class="ui teal right ribbon label">
-                <!-- react-text: 3256 -->modifier
-                <!-- /react-text -->
-            </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>onlyOwner</code>
-            </h3>
-            <div>
-                <p>
-                    Throws if called by any account other than the owner.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
-
-
-<div class="contract" contract-name="RaffleSystemTele2">
-
-
-
-    <h2 class="ui left floated header">
-        <!-- react-text: 929 -->RaffleSystemTele2
-        <!-- /react-text -->
-        <div class="sub header">
-            <!-- react-text: 931 -->contracts/RaffleSystemTele2.sol
-            <!-- /react-text -->
-        </div>
-    </h2>
-    <div class="ui hidden divider" style="clear: both;"></div>
-    <h4>This implementation is a prize drawing system.
-
-Special for Joys Digital.
-March, 2020.</h4>
+    <h4>Joys Main staking contract</h4>
     <div class="methods">
 
 
@@ -267,43 +38,20 @@ March, 2020.</h4>
             <table class="ui definition table">
                 <tbody class="">
                     <tr class="positive">
-                        <td  rowspan="4" 
+                        <td  rowspan="3" 
                             class="" data-reactid="171">Inputs</td>
-                        <td class="" data-reactid="88">string</td>
+                        <td class="" data-reactid="88">uint256</td>
                         <td class="" data-reactid="91">
                             <div data-reactid="92">
                                 <p data-reactid="93">
-                                    <code>_name</code>
+                                    <code>newMinimalStake</code>
                                 </p>
                             </div>
                         </td>
                         <td class="" data-reactid="91">
                             <div data-reactid="167">
                                 <p data-reactid="168">
-                                     
-                                    name of the raffle event
-
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Inputs</td>
-                        <td class="" data-reactid="88">string</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>_urlLink</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                     
-                                    the url link to the event website
-
+                                    
                                 </p>
                             </div>
                         </td>
@@ -315,16 +63,14 @@ March, 2020.</h4>
                         <td class="" data-reactid="91">
                             <div data-reactid="92">
                                 <p data-reactid="93">
-                                    <code>_toTele2Threshold</code>
+                                    <code>newStakeholdersLimit</code>
                                 </p>
                             </div>
                         </td>
                         <td class="" data-reactid="91">
                             <div data-reactid="167">
                                 <p data-reactid="168">
-                                     
-                                    the threshold for replenishment of tele2 (JW -> tele2) for the accrual of 1 ticket
-
+                                    
                                 </p>
                             </div>
                         </td>
@@ -332,19 +78,18 @@ March, 2020.</h4>
                     <tr class="positive">
                         <td  style="display:none;" 
                             class="" data-reactid="171">Inputs</td>
-                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="88">address</td>
                         <td class="" data-reactid="91">
                             <div data-reactid="92">
                                 <p data-reactid="93">
-                                    <code>_toJWThreshold</code>
+                                    <code>newVault</code>
                                 </p>
                             </div>
                         </td>
                         <td class="" data-reactid="91">
                             <div data-reactid="167">
                                 <p data-reactid="168">
-                                     
-                                    the threshold for replenishment of JW (tele2 -> JW) for the accrual of 1 ticket
+                                    
                                 </p>
                             </div>
                         </td>
@@ -355,111 +100,25 @@ March, 2020.</h4>
         </div>
         <div class="ui violet segment">
             <div class="ui violet right ribbon label">
-                <!-- react-text: 3256 -->nonpayable function
+                <!-- react-text: 3256 -->payable function
                 <!-- /react-text -->
             </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>registerTopUp</code>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>deposit</code>
                 <!-- react-text: 3259 -->
-                <!-- /react-text --><code class="signature">a0ab8874</code>
+                <!-- /react-text --><code class="signature">d0e30db0</code>
                 <code class="signature">external</code>
-                <code class="signature">onlyOwner</code>
+                <code class="signature">nonReentrant</code>
             </h3>
             <div>
                 <p>
-                    to register replenishment of participant,
-if replenishment exceeds a specified threshold, participant enters into drawing pool
-owner-only function
-
+                    
                 </p>
             </div>
             <table class="ui definition table">
                 <tbody class="">
-                    <tr class="positive">
-                        <td  rowspan="4" 
-                            class="" data-reactid="171">Inputs</td>
-                        <td class="" data-reactid="88">address</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>_player</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                     
-                                    the player address
-
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Inputs</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>_amount</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                     
-                                    how many rubles have been replenished
-
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Inputs</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>_operationTimestamp</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                     
-                                    time of replenishment
-
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Inputs</td>
-                        <td class="" data-reactid="88">uint8</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>_flag</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                     
-                                    0x1 = JW to Tele2, 0x2 = Tele2 to JW
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
 
                     <tr class="negative">
-                        <td  rowspan="4" 
+                        <td  rowspan="1" 
                             class="" data-reactid="171">Outputs</td>
                         <td class="" data-reactid="88">bool</td>
                         <td class="" data-reactid="91">
@@ -485,22 +144,41 @@ owner-only function
                 <!-- react-text: 3256 -->nonpayable function
                 <!-- /react-text -->
             </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>pickWinner</code>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>withdraw</code>
                 <!-- react-text: 3259 -->
-                <!-- /react-text --><code class="signature">5d495aea</code>
+                <!-- /react-text --><code class="signature">2e1a7d4d</code>
                 <code class="signature">external</code>
-                <code class="signature">onlyOwner</code>
+                <code class="signature">nonReentrant</code>
             </h3>
             <div>
                 <p>
-                    to play the raffle and pick a winner
+                    
                 </p>
             </div>
             <table class="ui definition table">
                 <tbody class="">
+                    <tr class="positive">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Inputs</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>amount</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
 
                     <tr class="negative">
-                        <td  rowspan="0" 
+                        <td  rowspan="1" 
                             class="" data-reactid="171">Outputs</td>
                         <td class="" data-reactid="88">bool</td>
                         <td class="" data-reactid="91">
@@ -523,94 +201,12 @@ owner-only function
         </div>
         <div class="ui violet segment">
             <div class="ui violet right ribbon label">
-                <!-- react-text: 3256 -->nonpayable function
-                <!-- /react-text -->
-            </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>closeRaffle</code>
-                <!-- react-text: 3259 -->
-                <!-- /react-text --><code class="signature">78a77b84</code>
-                <code class="signature">external</code>
-                <code class="signature">onlyOwner</code>
-            </h3>
-            <div>
-                <p>
-                    
-                </p>
-            </div>
-            <table class="ui definition table">
-                <tbody class="">
-
-                    <tr class="negative">
-                        <td  rowspan="0" 
-                            class="" data-reactid="171">Outputs</td>
-                        <td class="" data-reactid="88">bool</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="ui violet segment">
-            <div class="ui violet right ribbon label">
-                <!-- react-text: 3256 -->nonpayable function
-                <!-- /react-text -->
-            </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>openRaffle</code>
-                <!-- react-text: 3259 -->
-                <!-- /react-text --><code class="signature">b4ba7d36</code>
-                <code class="signature">external</code>
-                <code class="signature">onlyOwner</code>
-            </h3>
-            <div>
-                <p>
-                    
-                </p>
-            </div>
-            <table class="ui definition table">
-                <tbody class="">
-
-                    <tr class="negative">
-                        <td  rowspan="0" 
-                            class="" data-reactid="171">Outputs</td>
-                        <td class="" data-reactid="88">bool</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="ui violet segment">
-            <div class="ui violet right ribbon label">
                 <!-- react-text: 3256 -->view function
                 <!-- /react-text -->
             </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>getRaffleDetails</code>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>minimalStake</code>
                 <!-- react-text: 3259 -->
-                <!-- /react-text --><code class="signature">936afab3</code>
+                <!-- /react-text --><code class="signature">9ec41a2d</code>
                 <code class="signature">external</code>
             </h3>
             <div>
@@ -620,361 +216,11 @@ owner-only function
             </div>
             <table class="ui definition table">
                 <tbody class="">
-
-                    <tr class="negative">
-                        <td  rowspan="0" 
-                            class="" data-reactid="171">Outputs</td>
-                        <td class="" data-reactid="88">string</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>name</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="negative">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Outputs</td>
-                        <td class="" data-reactid="88">string</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>url</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="negative">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Outputs</td>
-                        <td class="" data-reactid="88">bool</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>isOpen</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="negative">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Outputs</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>currentIteration</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="negative">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Outputs</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>toTele2Threshold</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="negative">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Outputs</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>toJWThreshold</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="ui violet segment">
-            <div class="ui violet right ribbon label">
-                <!-- react-text: 3256 -->view function
-                <!-- /react-text -->
-            </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>raffleIsOpen</code>
-                <!-- react-text: 3259 -->
-                <!-- /react-text --><code class="signature">1bf4b7f8</code>
-                <code class="signature">external</code>
-            </h3>
-            <div>
-                <p>
-                    
-                </p>
-            </div>
-            <table class="ui definition table">
-                <tbody class="">
-
-                    <tr class="negative">
-                        <td  rowspan="0" 
-                            class="" data-reactid="171">Outputs</td>
-                        <td class="" data-reactid="88">bool</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>isOpen</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="ui violet segment">
-            <div class="ui violet right ribbon label">
-                <!-- react-text: 3256 -->view function
-                <!-- /react-text -->
-            </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>getTele2Replenishments</code>
-                <!-- react-text: 3259 -->
-                <!-- /react-text --><code class="signature">db3fb73c</code>
-                <code class="signature">external</code>
-            </h3>
-            <div>
-                <p>
-                    
-                </p>
-            </div>
-            <table class="ui definition table">
-                <tbody class="">
-                    <tr class="positive">
-                        <td  rowspan="2" 
-                            class="" data-reactid="171">Inputs</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>_iteration</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Inputs</td>
-                        <td class="" data-reactid="88">address</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>_player</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="negative">
-                        <td  rowspan="2" 
-                            class="" data-reactid="171">Outputs</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="ui violet segment">
-            <div class="ui violet right ribbon label">
-                <!-- react-text: 3256 -->view function
-                <!-- /react-text -->
-            </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>getJWReplenishment</code>
-                <!-- react-text: 3259 -->
-                <!-- /react-text --><code class="signature">5597daf6</code>
-                <code class="signature">external</code>
-            </h3>
-            <div>
-                <p>
-                    
-                </p>
-            </div>
-            <table class="ui definition table">
-                <tbody class="">
-                    <tr class="positive">
-                        <td  rowspan="2" 
-                            class="" data-reactid="171">Inputs</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>_iteration</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Inputs</td>
-                        <td class="" data-reactid="88">address</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>_player</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="negative">
-                        <td  rowspan="2" 
-                            class="" data-reactid="171">Outputs</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="ui violet segment">
-            <div class="ui violet right ribbon label">
-                <!-- react-text: 3256 -->view function
-                <!-- /react-text -->
-            </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>getAllPlayers</code>
-                <!-- react-text: 3259 -->
-                <!-- /react-text --><code class="signature">ac01b83d</code>
-                <code class="signature">external</code>
-            </h3>
-            <div>
-                <p>
-                    
-                </p>
-            </div>
-            <table class="ui definition table">
-                <tbody class="">
-                    <tr class="positive">
-                        <td  rowspan="1" 
-                            class="" data-reactid="171">Inputs</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>_iteration</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
 
                     <tr class="negative">
                         <td  rowspan="1" 
                             class="" data-reactid="171">Outputs</td>
-                        <td class="" data-reactid="88">address[]</td>
+                        <td class="" data-reactid="88">uint256</td>
                         <td class="" data-reactid="91">
                             <div data-reactid="92">
                                 <p data-reactid="93">
@@ -998,7 +244,7 @@ owner-only function
                 <!-- react-text: 3256 -->event
                 <!-- /react-text -->
             </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>TopUpToTele2</code>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>Deposit</code>
             </h3>
             <div>
                 <p>
@@ -1009,32 +255,13 @@ owner-only function
             <table class="ui definition table">
                 <tbody class="">
                     <tr class="positive">
-                        <td  rowspan="6" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>raffleIteration</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
+                        <td  rowspan="3" 
                             class="" data-reactid="171">Fields</td>
                         <td class="" data-reactid="88">address</td>
                         <td class="" data-reactid="91">
                             <div data-reactid="92">
                                 <p data-reactid="93">
-                                    <code>player</code>
+                                    <code>user</code>
                                 </p>
                             </div>
                         </td>
@@ -1053,7 +280,7 @@ owner-only function
                         <td class="" data-reactid="91">
                             <div data-reactid="92">
                                 <p data-reactid="93">
-                                    <code>oldAmount</code>
+                                    <code>value</code>
                                 </p>
                             </div>
                         </td>
@@ -1072,45 +299,7 @@ owner-only function
                         <td class="" data-reactid="91">
                             <div data-reactid="92">
                                 <p data-reactid="93">
-                                    <code>addAmount</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>newTicketCount</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>operationTimestamp</code>
+                                    <code>timestamp</code>
                                 </p>
                             </div>
                         </td>
@@ -1131,7 +320,7 @@ owner-only function
                 <!-- react-text: 3256 -->event
                 <!-- /react-text -->
             </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>TopUpToJW</code>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>Withdraw</code>
             </h3>
             <div>
                 <p>
@@ -1142,32 +331,13 @@ owner-only function
             <table class="ui definition table">
                 <tbody class="">
                     <tr class="positive">
-                        <td  rowspan="6" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>raffleIteration</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
+                        <td  rowspan="3" 
                             class="" data-reactid="171">Fields</td>
                         <td class="" data-reactid="88">address</td>
                         <td class="" data-reactid="91">
                             <div data-reactid="92">
                                 <p data-reactid="93">
-                                    <code>player</code>
+                                    <code>user</code>
                                 </p>
                             </div>
                         </td>
@@ -1186,7 +356,7 @@ owner-only function
                         <td class="" data-reactid="91">
                             <div data-reactid="92">
                                 <p data-reactid="93">
-                                    <code>oldAmount</code>
+                                    <code>value</code>
                                 </p>
                             </div>
                         </td>
@@ -1205,45 +375,7 @@ owner-only function
                         <td class="" data-reactid="91">
                             <div data-reactid="92">
                                 <p data-reactid="93">
-                                    <code>addAmount</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>newTicketCount</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>operationTimestamp</code>
+                                    <code>timestamp</code>
                                 </p>
                             </div>
                         </td>
@@ -1264,7 +396,7 @@ owner-only function
                 <!-- react-text: 3256 -->event
                 <!-- /react-text -->
             </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>NewTicket</code>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>Drop</code>
             </h3>
             <div>
                 <p>
@@ -1275,32 +407,13 @@ owner-only function
             <table class="ui definition table">
                 <tbody class="">
                     <tr class="positive">
-                        <td  rowspan="4" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>raffleIteration</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
+                        <td  rowspan="3" 
                             class="" data-reactid="171">Fields</td>
                         <td class="" data-reactid="88">address</td>
                         <td class="" data-reactid="91">
                             <div data-reactid="92">
                                 <p data-reactid="93">
-                                    <code>player</code>
+                                    <code>user</code>
                                 </p>
                             </div>
                         </td>
@@ -1319,7 +432,7 @@ owner-only function
                         <td class="" data-reactid="91">
                             <div data-reactid="92">
                                 <p data-reactid="93">
-                                    <code>newTicketCount</code>
+                                    <code>value</code>
                                 </p>
                             </div>
                         </td>
@@ -1338,7 +451,7 @@ owner-only function
                         <td class="" data-reactid="91">
                             <div data-reactid="92">
                                 <p data-reactid="93">
-                                    <code>operationTimestamp</code>
+                                    <code>timestamp</code>
                                 </p>
                             </div>
                         </td>
@@ -1359,7 +472,7 @@ owner-only function
                 <!-- react-text: 3256 -->event
                 <!-- /react-text -->
             </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>RandomGenerate</code>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>Transfer</code>
             </h3>
             <div>
                 <p>
@@ -1370,222 +483,13 @@ owner-only function
             <table class="ui definition table">
                 <tbody class="">
                     <tr class="positive">
-                        <td  rowspan="6" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>raffleIteration</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">bytes32</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>blockHash</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>blockDifficulty</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>blockTimestamp</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>noise</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>randomNumber</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
-        <div class="ui blue segment">
-            <div class="ui blue right ribbon label">
-                <!-- react-text: 3256 -->event
-                <!-- /react-text -->
-            </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>WinnerAnnouncement</code>
-            </h3>
-            <div>
-                <p>
-                    
-                </p>
-            </div>
-
-            <table class="ui definition table">
-                <tbody class="">
-                    <tr class="positive">
-                        <td  rowspan="6" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>raffleIteration</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>randomNumber</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>playerArrayLength</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
-                            class="" data-reactid="171">Fields</td>
-                        <td class="" data-reactid="88">uint256</td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="92">
-                                <p data-reactid="93">
-                                    <code>winnerIndex</code>
-                                </p>
-                            </div>
-                        </td>
-                        <td class="" data-reactid="91">
-                            <div data-reactid="167">
-                                <p data-reactid="168">
-                                    
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="positive">
-                        <td  style="display:none;" 
+                        <td  rowspan="3" 
                             class="" data-reactid="171">Fields</td>
                         <td class="" data-reactid="88">address</td>
                         <td class="" data-reactid="91">
                             <div data-reactid="92">
                                 <p data-reactid="93">
-                                    <code>winner</code>
+                                    <code>user</code>
                                 </p>
                             </div>
                         </td>
@@ -1604,7 +508,26 @@ owner-only function
                         <td class="" data-reactid="91">
                             <div data-reactid="92">
                                 <p data-reactid="93">
-                                    <code>blockTimestamp</code>
+                                    <code>value</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>timestamp</code>
                                 </p>
                             </div>
                         </td>
@@ -1621,17 +544,20 @@ owner-only function
 
         </div>
 
-        
         <div class="ui teal segment">
             <div class="ui teal right ribbon label">
                 <!-- react-text: 3256 -->modifier
                 <!-- /react-text -->
             </div>
-            <h3 class="ui header" style="margin-top: -1.5rem;"><code>onlyOwner</code>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>nonReentrant</code>
             </h3>
             <div>
                 <p>
-                    Throws if called by any account other than the owner.
+                    Prevents a contract from calling itself, directly or indirectly.
+Calling a `nonReentrant` function from another `nonReentrant`
+function is not supported. It is possible to prevent this from happening
+by making the `nonReentrant` function external, and make it call a
+`private` function that does the actual work.
                 </p>
             </div>
 
@@ -1642,33 +568,1570 @@ owner-only function
 
 
 
-<div class="contract" contract-name="SafeMath">
-
+<div class="contract" contract-name="Stakeholder">
 
 
     <h2 class="ui left floated header">
-        <!-- react-text: 929 -->SafeMath
+        <!-- react-text: 929 -->Stakeholder
         <!-- /react-text -->
         <div class="sub header">
-            <!-- react-text: 931 -->contracts/SafeMath.sol
+            <!-- react-text: 931 -->contracts/main/Stakeholder.sol
+            <!-- /react-text -->
+        </div>
+        <div class="sub header">
+            <!-- react-text: 931 -->Inherited from StakingMechanics
             <!-- /react-text -->
         </div>
     </h2>
     <div class="ui hidden divider" style="clear: both;"></div>
-    <h4>Wrappers over Solidity's arithmetic operations with added overflow
-checks.
-
-Arithmetic operations in Solidity wrap on overflow. This can easily result
-in bugs, because programmers usually assume that an overflow raises an
-error, which is the standard behavior in high level programming languages.
-`SafeMath` restores this intuition by reverting the transaction when an
-operation overflows.
-
-Using this library instead of the unchecked operations eliminates an entire
-class of bugs, so it's recommended to use it always.</h4>
+    <h4>Stakeholder system contract</h4>
     <div class="methods">
 
 
+        <div class="ui red segment">
+            <div class="ui red right ribbon label">
+                <!-- react-text: 3256 -->constructor
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>constructor</code>
+                <code class="signature">internal</code></h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+
+                </tbody>
+            </table>
+        </div>
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->view function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>isStakeholder</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">ef037b90</code>
+                <code class="signature">external</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+                    <tr class="positive">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Inputs</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>target</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="negative">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">bool</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>result</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->view function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>totalStakeholders</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">4f49a78a</code>
+                <code class="signature">external</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+
+                    <tr class="negative">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->view function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>stakeholdersLimit</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">28f367db</code>
+                <code class="signature">external</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+
+                    <tr class="negative">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->view function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>stakeholders</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">eeafa758</code>
+                <code class="signature">external</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+
+                    <tr class="negative">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">struct Stakeholder.StakeholderSummary[]</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->view function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>worstStakeholder</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">60099561</code>
+                <code class="signature">external</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+
+                    <tr class="negative">
+                        <td  rowspan="2" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="negative">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->view function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>getNextStakeholder</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">f46859b5</code>
+                <code class="signature">external</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+                    <tr class="positive">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Inputs</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>target</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="negative">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui blue segment">
+            <div class="ui blue right ribbon label">
+                <!-- react-text: 3256 -->event
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>AddStakeholder</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+
+            <table class="ui definition table">
+                <tbody class="">
+                    <tr class="positive">
+                        <td  rowspan="3" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>target</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>value</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>timestamp</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="ui blue segment">
+            <div class="ui blue right ribbon label">
+                <!-- react-text: 3256 -->event
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>RemoveStakeholder</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+
+            <table class="ui definition table">
+                <tbody class="">
+                    <tr class="positive">
+                        <td  rowspan="3" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>target</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>value</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>timestamp</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="ui blue segment">
+            <div class="ui blue right ribbon label">
+                <!-- react-text: 3256 -->event
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>IncreaseStakeholder</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+
+            <table class="ui definition table">
+                <tbody class="">
+                    <tr class="positive">
+                        <td  rowspan="3" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>target</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>value</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>timestamp</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="ui blue segment">
+            <div class="ui blue right ribbon label">
+                <!-- react-text: 3256 -->event
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>DecreaseStakeholder</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+
+            <table class="ui definition table">
+                <tbody class="">
+                    <tr class="positive">
+                        <td  rowspan="3" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>target</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>value</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>timestamp</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<div class="contract" contract-name="StakingMechanics">
+
+
+    <h2 class="ui left floated header">
+        <!-- react-text: 929 -->StakingMechanics
+        <!-- /react-text -->
+        <div class="sub header">
+            <!-- react-text: 931 -->contracts/main/StakingMechanics.sol
+            <!-- /react-text -->
+        </div>
+    </h2>
+    <div class="ui hidden divider" style="clear: both;"></div>
+    <h4>Staking mechanics contract</h4>
+    <div class="methods">
+
+
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->view function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>stakeOf</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">42623360</code>
+                <code class="signature">external</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+                    <tr class="positive">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Inputs</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>target</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="negative">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->view function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>expectedReward</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">07acb7dc</code>
+                <code class="signature">external</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+                    <tr class="positive">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Inputs</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>target</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="negative">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->view function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>rewardsOf</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">479ba7ae</code>
+                <code class="signature">external</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+                    <tr class="positive">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Inputs</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>target</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="negative">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->view function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>clearStakeOf</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">58034b0f</code>
+                <code class="signature">external</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+                    <tr class="positive">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Inputs</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>target</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="negative">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->view function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>totalClearStake</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">2c8c6e37</code>
+                <code class="signature">external</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+
+                    <tr class="negative">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->view function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>rewardPerSecond</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">8f10369a</code>
+                <code class="signature">external</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+
+                    <tr class="negative">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->view function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>vault</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">fbfa77cf</code>
+                <code class="signature">external</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+
+                    <tr class="negative">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui blue segment">
+            <div class="ui blue right ribbon label">
+                <!-- react-text: 3256 -->event
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>AddStake</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+
+            <table class="ui definition table">
+                <tbody class="">
+                    <tr class="positive">
+                        <td  rowspan="5" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>staker</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>value</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>resultClearStake</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>resultTotalClearStake</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>timestamp</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="ui blue segment">
+            <div class="ui blue right ribbon label">
+                <!-- react-text: 3256 -->event
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>SubStake</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+
+            <table class="ui definition table">
+                <tbody class="">
+                    <tr class="positive">
+                        <td  rowspan="5" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>staker</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>value</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>resultClearStake</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>resultTotalClearStake</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>timestamp</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<div class="contract" contract-name="Vault">
+
+
+    <h2 class="ui left floated header">
+        <!-- react-text: 929 -->Vault
+        <!-- /react-text -->
+        <div class="sub header">
+            <!-- react-text: 931 -->contracts/main/Vault.sol
+            <!-- /react-text -->
+        </div>
+        <div class="sub header">
+            <!-- react-text: 931 -->Inherited from IVault
+            <!-- /react-text -->
+        </div>
+    </h2>
+    <div class="ui hidden divider" style="clear: both;"></div>
+    <h4>Vault for staking contract</h4>
+    <div class="methods">
+
+
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->nonpayable function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>register</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">1aa3a008</code>
+                <code class="signature">external</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+
+                    <tr class="negative">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">bool</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->nonpayable function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>vaultWithdraw</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">fb839dda</code>
+                <code class="signature">external</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+                    <tr class="positive">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Inputs</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>amount</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="negative">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">bool</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui violet segment">
+            <div class="ui violet right ribbon label">
+                <!-- react-text: 3256 -->view function
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>stakingContract</code>
+                <!-- react-text: 3259 -->
+                <!-- /react-text --><code class="signature">ee99205c</code>
+                <code class="signature">external</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+            <table class="ui definition table">
+                <tbody class="">
+
+                    <tr class="negative">
+                        <td  rowspan="1" 
+                            class="" data-reactid="171">Outputs</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui blue segment">
+            <div class="ui blue right ribbon label">
+                <!-- react-text: 3256 -->event
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>VaultReplenishment</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+
+            <table class="ui definition table">
+                <tbody class="">
+                    <tr class="positive">
+                        <td  rowspan="3" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>from</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>amount</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>timestamp</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="ui blue segment">
+            <div class="ui blue right ribbon label">
+                <!-- react-text: 3256 -->event
+                <!-- /react-text -->
+            </div>
+            <h3 class="ui header" style="margin-top: -1.5rem;"><code>VaultWithdraw</code>
+            </h3>
+            <div>
+                <p>
+                    
+                </p>
+            </div>
+
+            <table class="ui definition table">
+                <tbody class="">
+                    <tr class="positive">
+                        <td  rowspan="3" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">address</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>from</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>amount</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="positive">
+                        <td  style="display:none;" 
+                            class="" data-reactid="171">Fields</td>
+                        <td class="" data-reactid="88">uint256</td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="92">
+                                <p data-reactid="93">
+                                    <code>timestamp</code>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="" data-reactid="91">
+                            <div data-reactid="167">
+                                <p data-reactid="168">
+                                    
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
 
 
     </div>

@@ -9,9 +9,10 @@
   "scripts": {
     "test": "npx truffle test",
     "coverage": "npx truffle run coverage",
-    "lint": "solhint contracts/* && solium -d contracts/",
-    "build": "truffle compile",
-    "docgen": "solidity-docgen -i contracts/ -o docs/generated/ -s single -t docs/templates/ -x html"
+    "lint": "npx solhint contracts/**/*.sol",
+    "build": "truffle compile --all",
+    "docgen": "solidity-docgen -i contracts/main/ -o docs/generated/ -s single -t docs/templates/ -x html",
+    "flatten": "truffle-flattener ./contracts/main/JoysStaking.sol | awk '/SPDX-License-Identifier/&&c++>0 {next} 1' | awk '/pragma experimental ABIEncoderV2;/&&c++>0 {next} 1' > ./Full.sol"
   },
   "author": "Alexey Zhdanov",
   "license": "",

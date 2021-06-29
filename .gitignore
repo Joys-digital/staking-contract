@@ -25,9 +25,8 @@ dist
 idea/
 .vscode/
 
-
 # Other
-
+.gas-report.txt
 build/
 bin/
-
+.DS_Store

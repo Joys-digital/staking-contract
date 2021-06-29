@@ -16,7 +16,7 @@ module.exports = {
   plugins: ["solidity-coverage"],
 
   networks: {
-    development: {
+    ganache: {
       host: "127.0.0.1",  // Localhost (default: none)
       port: 8545,         // Standard Ethereum port (default: none)
       network_id: "*",    // Any network (default: none)
@@ -28,13 +28,6 @@ module.exports = {
       network_id: 1,          // This network is yours, in the cloud.
       production: true        // Treats this network as if it was a public net. (default: false)
     },
-    kovan: {
-      provider: function() {
-        return new HDWallet(privateKey, `https://kovan.infura.io/v3/88459fc2d50c435e84d6852b9c87b436`);
-      },
-      network_id: 42,          // This network is yours, in the cloud.
-      production: true        // Treats this network as if it was a public net. (default: false)
-    },
     joys: {
       provider: function() {
         return new HDWallet(privateKey, `https://node.joys.digital`);
@@ -44,18 +37,18 @@ module.exports = {
     },
     toys: {
         provider: function() {
-          return new HDWallet(privateKey, `https://toys.joys.cash`);
+          return new HDWallet(privateKey, `https://node.toys-pos.joys.cash/`);
         },
         network_id: 99415706,   // This network is yours, in the cloud.
-        production: true        // Treats this network as if it was a public net. (default: false)
+        production: true,        // Treats this network as if it was a public net. (default: false)
+        gasPrice: 40000000000
       },
   },
     mocha: {
-        reporter: 'eth-gas-reporter',
-        reporterOptions : {
-            currency: 'USD',
-            gasPrice: 6
-        }
+      reporter: 'eth-gas-reporter',
+      reporterOptions: {
+        excludeContracts: ['Migrations']
+      }
     },
     solc: {
         optimizer: {
