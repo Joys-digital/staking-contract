@@ -2,7 +2,7 @@
 
 [![Testing](https://github.com/Joys-digital/staking-contract/actions/workflows/testing.yaml/badge.svg)](https://github.com/Joys-digital/staking-contract/actions/workflows/testing.yaml)
 [![codecov](https://codecov.io/gh/Joys-digital/staking-contract/branch/master/graph/badge.svg?token=4B7AYDKXHS)](https://codecov.io/gh/Joys-digital/staking-contract)
-[![Docs](https://img.shields.io/badge/docs-%F0%9F%93%84-success)](https://alexey-kaufmann.github.io/test-badges/)
+[![Docs](https://img.shields.io/badge/docs-%F0%9F%93%84-success)](https://joys-digital.github.io/staking-contract/)
 
 **Smart contract for staking native tokens**
 
