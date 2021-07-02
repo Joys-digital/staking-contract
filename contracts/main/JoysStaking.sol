@@ -5,12 +5,13 @@ pragma solidity 0.6.12;
 pragma experimental ABIEncoderV2;
 
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import "../interfaces/IJoysStaking.sol";
 import "./Stakeholder.sol";
 
 /**
  * @dev Joys Main staking contract
  */
-contract JoysStaking is Stakeholder, ReentrancyGuard {
+contract JoysStaking is IJoysStaking, Stakeholder, ReentrancyGuard {
 
     event Deposit(address indexed user, uint256 value, uint256 timestamp);
     event Withdraw(address indexed user, uint256 value, uint256 timestamp);
@@ -46,7 +47,7 @@ contract JoysStaking is Stakeholder, ReentrancyGuard {
         emit Receive(msg.sender, msg.value, block.timestamp);
     }
 
-    function deposit() external payable nonReentrant returns (bool success) {
+    function deposit() external payable nonReentrant override returns (bool success) {
         require(msg.value > 0, "JoysStaking: value must not be zero");
 
         _recalculateStaker(msg.sender);
@@ -77,7 +78,7 @@ contract JoysStaking is Stakeholder, ReentrancyGuard {
         return true;
     }
 
-    function withdraw(uint256 amount) external nonReentrant returns (bool success) {
+    function withdraw(uint256 amount) external nonReentrant override returns (bool success) {
         require(amount > 0, "JoysStaking: amount must not be zero");
         require(_isStakeholder(msg.sender), "JoysStaking: user must be a stakeholder");
 
@@ -99,7 +100,7 @@ contract JoysStaking is Stakeholder, ReentrancyGuard {
         return true;
     }
 
-    function emergencyClosePosition(address payable target) external nonReentrant onlyOwner returns(bool success) {
+    function emergencyClosePosition(address payable target) external nonReentrant onlyOwner override returns(bool success) {
         require(_isStakeholder(target), "JoysStaking: target must be a stakeholder");
 
         _recalculateStaker(target);
@@ -112,7 +113,7 @@ contract JoysStaking is Stakeholder, ReentrancyGuard {
         return true;
     }
 
-    function minimalStake() external view returns (uint256) {
+    function minimalStake() external view override returns (uint256) {
         return _minimalStake;
     }
 

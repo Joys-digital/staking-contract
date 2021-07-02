@@ -5,17 +5,13 @@ pragma solidity ^0.6.12;
 pragma experimental ABIEncoderV2;
 
 import "./StakingMechanics.sol";
+import "../interfaces/IStakeholder.sol";
 import "../utils/StakingOwnable.sol";
 
 /**
  * @dev Stakeholder system contract
  */
-abstract contract Stakeholder is StakingMechanics, StakingOwnable {
-
-    struct StakeholderSummary{
-        address stakeholder;
-        uint256 stake;
-    }
+abstract contract Stakeholder is IStakeholder, StakingMechanics, StakingOwnable {
 
     mapping(address => bool) private __isStakeholder;
     mapping(address => address) private __nextStakeholder;
@@ -34,31 +30,32 @@ abstract contract Stakeholder is StakingMechanics, StakingOwnable {
         __nextStakeholder[GUARD] = GUARD;
     }
 
-    function updateStakeholdersLimit() external onlyOwner returns(bool result) {
+    function updateStakeholdersLimit() external onlyOwner override returns(bool result) {
         require(_stakeholdersLimit != _nextStakeholdersLimit, "Stakeholder: stakeholders limit has already been updated");
         _stakeholdersLimit = _nextStakeholdersLimit;
         return true;
     }
 
-    function isStakeholder(address target) external view returns(bool result) {
+    function isStakeholder(address target) external view override returns(bool result) {
         return _isStakeholder(target);
     }
 
-    function totalStakeholders() external view returns(uint256) {
+    function totalStakeholders() external view override returns(uint256) {
         return _totalStakeholders();
     }
 
-    function stakeholdersLimit() external view returns(uint256) {
+    function stakeholdersLimit() external view override returns(uint256) {
         return _stakeholdersLimit;
     }
 
-    function nextStakeholdersLimit() external view returns(uint256) {
+    function nextStakeholdersLimit() external view override returns(uint256) {
         return _nextStakeholdersLimit;
     }
 
     function stakeholders()
         external
         view
+        override
         returns (StakeholderSummary[] memory)
     {
         StakeholderSummary[] memory result = new StakeholderSummary[](__totalStakeholders);
@@ -75,11 +72,11 @@ abstract contract Stakeholder is StakingMechanics, StakingOwnable {
         return result;
     }
 
-    function worstStakeholder() external view returns(address, uint256) {
+    function worstStakeholder() external view override returns(address, uint256) {
         return _worstStakeholder();
     }
 
-    function getNextStakeholder(address target) external view returns(address) {
+    function getNextStakeholder(address target) external view override returns(address) {
         return __nextStakeholder[target];
     }
 
