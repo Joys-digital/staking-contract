@@ -4,12 +4,13 @@
 pragma solidity ^0.6.12;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
+import "../interfaces/IStakingMechanics.sol";
 import "../interfaces/IVault.sol";
 
 /**
  * @dev Staking mechanics contract
  */
-abstract contract StakingMechanics {
+abstract contract StakingMechanics is IStakingMechanics {
     using SafeMath for uint256;
 
     uint256 private __totalClearStake;
@@ -35,35 +36,35 @@ abstract contract StakingMechanics {
         uint256 timestamp
     );
 
-    function stakeOf(address target) external view returns (uint256) {
+    function stakeOf(address target) external view override returns (uint256) {
         return (_stakeOf(target));
     }
 
-    function expectedReward(address target) external view returns (uint256) {
+    function expectedReward(address target) external view override returns (uint256) {
         return _expectedReward(target);
     }
 
-    function rewardsOf(address target) external view returns (uint256) {
+    function rewardsOf(address target) external view override returns (uint256) {
         return (__rewards[target]).add(_expectedReward(target));
     }
 
-    function clearStakeOf(address target) external view returns (uint256) {
+    function clearStakeOf(address target) external view override returns (uint256) {
         return __clearStake[target];
     }
 
-    function totalClearStake() external view returns (uint256) {
+    function totalClearStake() external view override returns (uint256) {
         return __totalClearStake;
     }
 
-    function rewardPerSecond() external view returns(uint256) {
+    function rewardPerSecond() external view override returns(uint256) {
         return _rewardPerSecond;
     }
 
-    function lastUpdateAt(address target) external view returns(uint256) {
+    function lastUpdateAt(address target) external view override returns(uint256) {
         return __lastUpdateAt[target];
     }
 
-    function vault() external view returns(address) {
+    function vault() external view override returns(address) {
         return _vault;
     }
 
