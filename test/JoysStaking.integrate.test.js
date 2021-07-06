@@ -176,42 +176,49 @@ contract('JoysStaking', function (accounts) {
         describe('positive', function () {
             it('close position', async function () {
                 await this.joysStakingInst.deposit({from: anotherAccount1, value: minimalStake});
+                var freezedTimestamp1 = (await web3.eth.getBlock('latest')).timestamp;
+                
                 var balanceBefore = await web3.eth.getBalance(anotherAccount1);
-                var freezedTimestamp = (await web3.eth.getBlock('latest')).timestamp;
-                await advanceBlockAndSetTime(freezedTimestamp);
-                var receipt = await this.joysStakingInst.emergencyClosePosition(anotherAccount1, {from: owner});
-                await advanceBlockAndSetTime(freezedTimestamp);
-                var balanceAfter = await web3.eth.getBalance(anotherAccount1);
 
-                var eventTime = ((await web3.eth.getBlock('latest')).timestamp).toString();
+                var receipt = await this.joysStakingInst.emergencyClosePosition(anotherAccount1, {from: owner});
+                var freezedTimestamp2 = (await web3.eth.getBlock('latest')).timestamp;
+                var eventTime = freezedTimestamp2.toString();
+                var passedTime = freezedTimestamp2 - freezedTimestamp1;
+                var rewarded = (new BN(REVARD_PER_SECOND)).mul(new BN(passedTime));
+
                 expectEvent(receipt, 'SubStake', {
                     staker: anotherAccount1,
-                    // value: minimalStake,
+                    value: new BN(minimalStake).add(rewarded),
                     resultClearStake: "0",
                     resultTotalClearStake: "0",
                     timestamp: eventTime
                 });
                 expectEvent(receipt, 'RemoveStakeholder', {
                     target: anotherAccount1,
-                    // value: minimalStake,
+                    value: new BN(minimalStake).add(rewarded),
                     timestamp: eventTime
                 });
                 expectEvent(receipt, 'Transfer', {
                     target: anotherAccount1,
-                    // value: minimalStake,
+                    value: new BN(minimalStake).add(rewarded),
                     timestamp: eventTime
                 });
                 expectEvent(receipt, 'EmergencyClosePosition', {
                     owner: owner,
                     target: anotherAccount1,
-                    // value: minimalStake,
+                    value: new BN(minimalStake).add(rewarded),
                     timestamp: eventTime
                 });
 
-                // await assert.equal(
-                //     balanceAfter.toString(),
-                //     (new BN(balanceBefore)).add(new BN(minimalStake)).toString()
-                // );
+                // // timeJump
+                // var passedTime = freezedTimestamp2 - freezedTimestamp1 + 1;
+                // await advanceBlockAndSetTime(freezedTimestamp1 + passedTime);
+                var balanceAfter = await web3.eth.getBalance(anotherAccount1);
+
+                await assert.equal(
+                    balanceAfter.toString(),
+                    new BN(balanceBefore).add(new BN(minimalStake)).add(rewarded).toString()
+                );
 
                 await assert.equal(
                     (await this.joysStakingInst.stakeOf(anotherAccount1)).toString(),
@@ -596,12 +603,15 @@ contract('JoysStaking', function (accounts) {
                     timestamp: eventTime
                 });
 
-
                 var value2 = await ((new BN(minimalStake)).div(new BN(2))).toString();
 
                 var receipt2 = await this.joysStakingInst.deposit({from: anotherAccount1, value: value2});
                 var freezedTimestamp2 = (await web3.eth.getBlock('latest')).timestamp;
                 var eventTime = await freezedTimestamp2.toString();
+
+                // calculating reward
+                var passedTime = freezedTimestamp2 - freezedTimestamp1;
+                var rewarded = (new BN(REVARD_PER_SECOND)).mul(new BN(passedTime));
                 
                 expectEvent(receipt2, 'Deposit', {
                     user: anotherAccount1,
@@ -615,36 +625,38 @@ contract('JoysStaking', function (accounts) {
                 });
                 expectEvent(receipt2, 'Receive', {
                     from: this.vaultInst.address,
-                    // value: "0",
+                    value: rewarded,
                     timestamp: eventTime
                 });
                 
-                // var timeJump = await (-freezedTimestamp2 + freezedTimestamp1 + 1);
-                // var multiplicator = await (timeJump - freezedTimestamp2);
-                // await advanceBlockAndSetTime(timeJump);
-                // TODO MUL OVERFLOW (ACTUAL)
+                
+                var timeJump = (freezedTimestamp2 + 1);
+                var passedTime = passedTime + 1;
+                var rewards = (new BN(REVARD_PER_SECOND)).mul(new BN(passedTime));
+                var expected = new BN(REVARD_PER_SECOND).mul(new BN(1));
 
-                // var expected = new BN(REVARD_PER_SECOND).mul(new BN(1));
-                // await assert.equal(
-                //     (await this.joysStakingInst.stakeOf(anotherAccount1)).toString(),
-                //     ((new BN(minimalStake)).add((new BN(minimalStake)).div(new BN(2)))).add(expected).toString()
-                // );
-                // await assert.equal(
-                //     (await this.joysStakingInst.expectedReward(anotherAccount1)).toString(),
-                //     expected.toString()
-                // );
-                // await assert.equal(
-                //     (await this.joysStakingInst.rewardsOf(anotherAccount1)).toString(),
-                //     expected
-                // );
-                // await assert.equal(
-                //     (await this.joysStakingInst.clearStakeOf(anotherAccount1)).toString(),
-                //     (new BN(minimalStake)).add((new BN(minimalStake)).div(new BN(2))).toString()
-                // );
-                // await assert.equal(
-                //     (await this.joysStakingInst.totalClearStake()).toString(),
-                //     (new BN(minimalStake)).add((new BN(minimalStake)).div(new BN(2))).toString()
-                // );
+                await advanceBlockAndSetTime(timeJump);
+
+                await assert.equal(
+                    (await this.joysStakingInst.stakeOf(anotherAccount1)).toString(),
+                    ((new BN(minimalStake)).add((new BN(minimalStake)).div(new BN(2)))).add(rewards).toString()
+                );
+                await assert.equal(
+                    (await this.joysStakingInst.expectedReward(anotherAccount1)).toString(),
+                    expected.toString()
+                );
+                await assert.equal(
+                    (await this.joysStakingInst.rewardsOf(anotherAccount1)).toString(),
+                    rewards
+                );
+                await assert.equal(
+                    (await this.joysStakingInst.clearStakeOf(anotherAccount1)).toString(),
+                    (new BN(minimalStake)).add((new BN(minimalStake)).div(new BN(2))).add(rewarded).toString()
+                );
+                await assert.equal(
+                    (await this.joysStakingInst.totalClearStake()).toString(),
+                    (new BN(minimalStake)).add((new BN(minimalStake)).div(new BN(2))).add(rewarded).toString()
+                );
                 await assert.equal(
                     await this.joysStakingInst.isStakeholder(anotherAccount1),
                     true
@@ -662,10 +674,10 @@ contract('JoysStaking', function (accounts) {
                     worstStakeholder[0],
                     anotherAccount1
                 );
-                // await assert.equal(
-                //     worstStakeholder[1],
-                //     ((new BN(minimalStake)).add((new BN(minimalStake)).div(new BN(2)))).add(new BN(REVARD_PER_SECOND)).toString()
-                // );
+                await assert.equal(
+                    worstStakeholder[1],
+                    ((new BN(minimalStake)).add((new BN(minimalStake)).div(new BN(2)))).add(rewards).toString()
+                );
                 await assert.equal(
                     await this.joysStakingInst.getNextStakeholder(GUARD),
                     anotherAccount1
@@ -685,69 +697,49 @@ contract('JoysStaking', function (accounts) {
                 await checkEmptyStakeholder(anotherAccount5, this.joysStakingInst);
                 
                 // anotherAccount3 is worst
-                await advanceBlockAndSetTime(this.freezedTimestamp1);
                 var receipt1 = await this.joysStakingInst.deposit({from: anotherAccount1, value: (new BN(minimalStake)).mul(new BN("2"))});
-                await advanceBlockAndSetTime(this.freezedTimestamp1);
-                var receipt2 = await this.joysStakingInst.deposit({from: anotherAccount2, value: (new BN(minimalStake)).mul(new BN("2"))});
-                await advanceBlockAndSetTime(this.freezedTimestamp1);
+                var receipt2 = await this.joysStakingInst.deposit({from: anotherAccount2, value: (new BN(minimalStake)).mul(new BN("3"))});
                 var receipt3 = await this.joysStakingInst.deposit({from: anotherAccount3, value: (new BN(minimalStake)).mul(new BN("1"))});
-                await advanceBlockAndSetTime(this.freezedTimestamp1);
-                var receipt4 = await this.joysStakingInst.deposit({from: anotherAccount4, value: (new BN(minimalStake)).mul(new BN("2"))});
                 var freezedTimestamp1 = (await web3.eth.getBlock('latest')).timestamp;
-                await advanceBlockAndSetTime(this.freezedTimestamp1);
-                var balanceBefore = await web3.eth.getBalance(anotherAccount3);
-                var receipt5 = await this.joysStakingInst.deposit({from: anotherAccount5, value: (new BN(minimalStake)).mul(new BN("2"))});
-                var balanceAfter = await web3.eth.getBalance(anotherAccount3);
-                var freezedTimestamp2 = (await web3.eth.getBlock('latest')).timestamp;
+                var receipt4 = await this.joysStakingInst.deposit({from: anotherAccount4, value: (new BN(minimalStake)).mul(new BN("3"))});
 
+                var balanceBefore = await web3.eth.getBalance(anotherAccount3);
+                var receipt5 = await this.joysStakingInst.deposit({from: anotherAccount5, value: (new BN(minimalStake)).mul(new BN("3"))});
+                var balanceAfter = await web3.eth.getBalance(anotherAccount3);
+                var freezedTimestamp3 = (await web3.eth.getBlock('latest')).timestamp;
+                
+                var passedTime = freezedTimestamp3 - freezedTimestamp1;
+                var rewarded = (new BN(REVARD_PER_SECOND)).mul(new BN(passedTime));
                 await assert.equal(
                     balanceAfter.toString(),
-                    (new BN(balanceBefore)).add(new BN(minimalStake)).mul(new BN("1")).toString()
+                    (new BN(balanceBefore)).add(new BN(minimalStake)).add(rewarded).toString()
                 );
 
-                expectEvent(receipt4, 'Deposit', {
-                    user: anotherAccount4,
-                    value: (new BN(minimalStake)).mul(new BN("2")).toString(),
-                    timestamp: freezedTimestamp1.toString()
-                });
-                expectEvent(receipt4, 'AddStake', {
-                    staker: anotherAccount4,
-                    value: (new BN(minimalStake)).mul(new BN("2")).toString(),
-                    resultClearStake: (new BN(minimalStake)).mul(new BN("2")).toString(),
-                    resultTotalClearStake: (new BN(minimalStake)).mul(new BN("7")).toString(),
-                    timestamp: freezedTimestamp1.toString()
-                });
-                expectEvent(receipt4, 'AddStakeholder', {
-                    target: anotherAccount4,
-                    value: (new BN(minimalStake)).mul(new BN("2")).toString(),
-                    timestamp: freezedTimestamp1.toString()
-                });
                 expectEvent(receipt5, 'Deposit', {
                     user: anotherAccount5,
-                    value: (new BN(minimalStake)).mul(new BN("2")).toString(),
-                    timestamp: freezedTimestamp2.toString()
+                    value: (new BN(minimalStake)).mul(new BN("3")).toString(),
+                    timestamp: freezedTimestamp3.toString()
                 });
                 expectEvent(receipt5, 'AddStakeholder', {
                     target: anotherAccount5,
-                    value: (new BN(minimalStake)).mul(new BN("2")).toString(),
-                    timestamp: freezedTimestamp2.toString()
+                    value: (new BN(minimalStake)).mul(new BN("3")).toString(),
+                    timestamp: freezedTimestamp3.toString()
                 });
                 expectEvent(receipt5, 'RemoveStakeholder', {
                     target: anotherAccount3,
-                    value: (new BN(minimalStake)).mul(new BN("1")).toString(),
-                    timestamp: freezedTimestamp2.toString()
+                    value: (new BN(minimalStake)).add(rewarded).toString(),
+                    timestamp: freezedTimestamp3.toString()
                 });
                 expectEvent(receipt5, 'Transfer', {
                     target: anotherAccount3,
-                    value: (new BN(minimalStake)).mul(new BN("1")).toString(),
-                    timestamp: freezedTimestamp2.toString()
+                    value: (new BN(minimalStake)).add(rewarded).toString(),
+                    timestamp: freezedTimestamp3.toString()
                 });
                 expectEvent(receipt5, 'Drop', {
                     from: anotherAccount5,
                     to: anotherAccount3,
-                    // TODO
-                    // value: (new BN(minimalStake)).mul(new BN("1")).toString(),
-                    timestamp: freezedTimestamp2.toString()
+                    value: (new BN(minimalStake)).add(rewarded).toString(),
+                    timestamp: freezedTimestamp3.toString()
                 });
                 
                 var timeJump = await (freezedTimestamp1 + 1);
@@ -767,7 +759,7 @@ contract('JoysStaking', function (accounts) {
                 );
                 await assert.equal(
                     (await this.joysStakingInst.totalClearStake()).toString(),
-                    (new BN(minimalStake)).mul(new BN("8")).toString()
+                    (new BN(minimalStake)).mul(new BN("11")).toString()
                 );
                 await assert.equal(
                     await this.joysStakingInst.isStakeholder(anotherAccount3),
@@ -781,32 +773,15 @@ contract('JoysStaking', function (accounts) {
                     (await this.joysStakingInst.stakeholders()).length,
                     "4"
                 );
-                // var worstStakeholder = await this.joysStakingInst.worstStakeholder();
-                // TODO
-                // await assert.equal(
-                //     worstStakeholder[0],
-                //     anotherAccount1
-                // );
-                // await assert.equal(
-                //     await this.joysStakingInst.getNextStakeholder(GUARD),
-                //     anotherAccount1
-                // );
-                // await assert.equal(
-                //     await this.joysStakingInst.getNextStakeholder(anotherAccount1),
-                //     anotherAccount2
-                // );
-                // await assert.equal(
-                //     await this.joysStakingInst.getNextStakeholder(anotherAccount2),
-                //     anotherAccount4
-                // );
-                // await assert.equal(
-                //     await this.joysStakingInst.getNextStakeholder(anotherAccount4),
-                //     anotherAccount5
-                // );
-                // await assert.equal(
-                //     await this.joysStakingInst.getNextStakeholder(anotherAccount5),
-                //     GUARD
-                // );
+                var worstStakeholder = await this.joysStakingInst.worstStakeholder();
+                await assert.equal(
+                    worstStakeholder[0],
+                    anotherAccount1
+                );
+                await assert.equal(
+                    await this.joysStakingInst.getNextStakeholder(GUARD),
+                    anotherAccount1
+                );
             });
         })
         describe('negative', function () {
@@ -840,75 +815,80 @@ contract('JoysStaking', function (accounts) {
         beforeEach(async function () {
             await checkEmptyStakeholder(anotherAccount1, this.joysStakingInst);
             this.depositedStake = await ((new BN(minimalStake)).add((new BN(minimalStake)).div(new BN(2))));
-            await advanceBlockAndSetTime(this.freezedTimestamp1);
             await this.joysStakingInst.deposit({from: anotherAccount1, value: this.depositedStake});
             this.freezedTimestamp1 = (await web3.eth.getBlock('latest')).timestamp;
         });
         describe('positive', function () {
             it('part-single', async function () {
                 var withdrawAmount = await (new BN(minimalStake)).div(new BN(2));
-                await advanceBlockAndSetTime(this.freezedTimestamp1);
 
-                var price = "0x1";
-                // var balanceBefore = await web3.eth.getBalance(anotherAccount1);
-                var receipt1 = await this.joysStakingInst.withdraw(withdrawAmount, {from: anotherAccount1, gasPrice: price});
-                // var balanceAfter = await web3.eth.getBalance(anotherAccount1);
-                // var fee = await (receipt1.receipt.gasUsed * price);
-                // todo
-                // await assert.equal(
-                //     balanceAfter.toString(),
-                //     (new BN(balanceBefore)).add(withdrawAmount).sub(new BN(fee)).toString()
-                // );
-
+                var balanceBefore = await web3.eth.getBalance(anotherAccount1);
+                var receipt1 = await this.joysStakingInst.withdraw(withdrawAmount, {from: anotherAccount1});
                 var freezedTimestamp2 = (await web3.eth.getBlock('latest')).timestamp;
-                var timeJump = await (5 - this.freezedTimestamp2 + this.freezedTimestamp1);
-                await advanceBlockAndSetTime(this.freezedTimestamp2 + timeJump);
-                var eventTime = await freezedTimestamp2.toString();
 
+                var passedTime = freezedTimestamp2 - this.freezedTimestamp1;
+                var rewarded = (new BN(REVARD_PER_SECOND)).mul(new BN(passedTime));
+
+                var eventTime = await freezedTimestamp2.toString();
                 expectEvent(receipt1, 'Withdraw', {
                     user: anotherAccount1,
-                    value: withdrawAmount,
+                    value: new BN(withdrawAmount),
                     timestamp: eventTime
                 });
                 expectEvent(receipt1, 'DecreaseStakeholder', {
                     target: anotherAccount1,
-                    value: withdrawAmount,
+                    value: new BN(withdrawAmount),
                     timestamp: eventTime
                 });
                 expectEvent(receipt1, 'Transfer', {
                     target: anotherAccount1,
-                    value: withdrawAmount,
+                    value: new BN(withdrawAmount),
                     timestamp: eventTime
                 });
-                // expectEvent(receipt1, 'Receive', {
-                //     from: this.vaultInst.address,
-                //     value: "0",
-                //     timestamp: eventTime
-                // });
+                expectEvent(receipt1, 'Receive', {
+                    from: this.vaultInst.address,
+                    value: rewarded,
+                    timestamp: eventTime
+                });
+
+                var gasPrice = new BN((await web3.eth.getTransaction(receipt1.tx)).gasPrice)
+                var fee = await (new BN(receipt1.receipt.gasUsed).mul(gasPrice));
+                var balanceAfter = await web3.eth.getBalance(anotherAccount1);
+
+                await assert.equal(
+                    balanceAfter.toString(),
+                    (new BN(balanceBefore)).add(withdrawAmount).sub(new BN(fee)).toString()
+                );
+
+                var timeJump = await (freezedTimestamp2 + 5);
+                await advanceBlockAndSetTime(timeJump);
                 
-                // await advanceBlockAndSetTime(timeJump);
+                var passedTime = passedTime + 5;
+                var rewards = (new BN(REVARD_PER_SECOND)).mul(new BN(passedTime));
+                var expected = new BN(REVARD_PER_SECOND).mul(new BN(5));
 
                 var remainder = await this.depositedStake.sub(withdrawAmount);
                 
-                // await assert.equal(
-                //     (await this.joysStakingInst.stakeOf(anotherAccount1)).toString(),
-                //     remainder.add((new BN(REVARD_PER_SECOND)).mul(new BN(5))).toString()
-                // );
-                // await assert.equal(
-                //     (await this.joysStakingInst.expectedReward(anotherAccount1)).toString(),
-                //     (new BN(REVARD_PER_SECOND)).mul(new BN(5)).toString()
-                // );
-                // await assert.equal(
-                //     (await this.joysStakingInst.rewardsOf(anotherAccount1)).toString(),
-                //     (new BN(REVARD_PER_SECOND)).mul(new BN(5)).toString()
-                // );
-                // await assert.equal(
-                //     (await this.joysStakingInst.clearStakeOf(anotherAccount1)).toString(),
-                //     remainder.toString()
-                // );
+                await assert.equal(
+                    (await this.joysStakingInst.stakeOf(anotherAccount1)).toString(),
+                    remainder.add(rewards).toString()
+                );
+                await assert.equal(
+                    (await this.joysStakingInst.expectedReward(anotherAccount1)).toString(),
+                    expected.toString()
+                );
+                await assert.equal(
+                    (await this.joysStakingInst.rewardsOf(anotherAccount1)).toString(),
+                    rewards.toString()
+                );
+                await assert.equal(
+                    (await this.joysStakingInst.clearStakeOf(anotherAccount1)).toString(),
+                    remainder.add(rewarded).toString()
+                );
+
                 await assert.equal(
                     (await this.joysStakingInst.totalClearStake()).toString(),
-                    remainder.toString()
+                    remainder.add(rewarded).toString()
                 );
                 await assert.equal(
                     await this.joysStakingInst.isStakeholder(anotherAccount1),
@@ -927,10 +907,10 @@ contract('JoysStaking', function (accounts) {
                     worstStakeholder[0],
                     anotherAccount1
                 );
-                // await assert.equal(
-                //     worstStakeholder[1],
-                //     remainder.add((new BN(REVARD_PER_SECOND)).mul(new BN(5))).toString()
-                // );
+                await assert.equal(
+                    worstStakeholder[1],
+                    remainder.add(rewards).toString()
+                );
                 await assert.equal(
                     await this.joysStakingInst.getNextStakeholder(GUARD),
                     anotherAccount1
@@ -943,12 +923,46 @@ contract('JoysStaking', function (accounts) {
 
             it('full-single', async function () {
                 var withdrawAmount = await this.depositedStake;
-                await advanceBlockAndSetTime(this.freezedTimestamp1);
-                await this.joysStakingInst.withdraw(withdrawAmount, {from: anotherAccount1});
-                
-                var freezedTimestamp2 = (await web3.eth.getBlock('latest')).timestamp;
-                var timeJump = await (5 + this.freezedTimestamp1);
+                await advanceBlockAndSetTime(this.freezedTimestamp1 + 1);
 
+                var balanceBefore = await web3.eth.getBalance(anotherAccount1);
+                var receipt1 = await this.joysStakingInst.withdraw(withdrawAmount, {from: anotherAccount1});
+                var freezedTimestamp2 = (await web3.eth.getBlock('latest')).timestamp;
+
+                var passedTime = freezedTimestamp2 - this.freezedTimestamp1;
+                var rewarded = (new BN(REVARD_PER_SECOND)).mul(new BN(passedTime));
+
+                var eventTime = await freezedTimestamp2.toString();
+                expectEvent(receipt1, 'Withdraw', {
+                    user: anotherAccount1,
+                    value: new BN(withdrawAmount).add(rewarded),
+                    timestamp: eventTime
+                });
+                expectEvent(receipt1, 'RemoveStakeholder', {
+                    target: anotherAccount1,
+                    value: new BN(withdrawAmount).add(rewarded),
+                    timestamp: eventTime
+                });
+                expectEvent(receipt1, 'Transfer', {
+                    target: anotherAccount1,
+                    value: new BN(withdrawAmount).add(rewarded),
+                    timestamp: eventTime
+                });
+                expectEvent(receipt1, 'Receive', {
+                    from: this.vaultInst.address,
+                    value: rewarded,
+                    timestamp: eventTime
+                });
+
+                var gasPrice = new BN((await web3.eth.getTransaction(receipt1.tx)).gasPrice)
+                var fee = await (new BN(receipt1.receipt.gasUsed).mul(gasPrice));
+                var balanceAfter = await web3.eth.getBalance(anotherAccount1);
+                await assert.equal(
+                    balanceAfter.toString(),
+                    (new BN(balanceBefore)).add(withdrawAmount).add(rewarded).sub(fee).toString()
+                );
+                
+                var timeJump = await (freezedTimestamp2 + 5);
                 await advanceBlockAndSetTime(timeJump);
 
                 var remainder = new BN(0);
@@ -961,10 +975,10 @@ contract('JoysStaking', function (accounts) {
                     (await this.joysStakingInst.expectedReward(anotherAccount1)).toString(),
                     remainder.toString()
                 );
-                // await assert.equal(
-                //     (await this.joysStakingInst.rewardsOf(anotherAccount1)).toString(),
-                //     remainder.toString()
-                // );
+                await assert.equal(
+                    (await this.joysStakingInst.rewardsOf(anotherAccount1)).toString(),
+                    rewarded.toString()
+                );
                 await assert.equal(
                     (await this.joysStakingInst.clearStakeOf(anotherAccount1)).toString(),
                     remainder.toString()
@@ -1001,46 +1015,50 @@ contract('JoysStaking', function (accounts) {
             });
 
             it('overlimit-single', async function () {
-                var withdrawAmount = await (this.depositedStake.sub(new BN(minimalStake)).add(new BN(1)));
-                
-                var price = "0x1";
-                
+                var withdrawAmount = await (this.depositedStake.sub(new BN(minimalStake)).add((new BN(REVARD_PER_SECOND)).mul(new BN("2"))));
+                  
                 var balanceBefore = await web3.eth.getBalance(anotherAccount1);
-                await advanceBlockAndSetTime(this.freezedTimestamp1);
-                var receipt1 = await this.joysStakingInst.withdraw(withdrawAmount, {from: anotherAccount1, gasPrice: price});
+
+                var receipt1 = await this.joysStakingInst.withdraw(withdrawAmount, {from: anotherAccount1});
                 var freezedTimestamp2 = (await web3.eth.getBlock('latest')).timestamp;
+
+                var passedTime = freezedTimestamp2 - this.freezedTimestamp1;
+                var rewarded = (new BN(REVARD_PER_SECOND)).mul(new BN(passedTime));
+
                 var balanceAfter = await web3.eth.getBalance(anotherAccount1);
-                var fee = await ((new BN(receipt1.receipt.gasUsed)).mul(new BN (price)));
-                // TODO
-                // await assert.equal(
-                //     balanceAfter.toString(),
-                //     (new BN(balanceBefore)).add(this.depositedStake).sub(new BN(fee)).toString()
-                // );
+                var gasPrice = new BN((await web3.eth.getTransaction(receipt1.tx)).gasPrice)
+                var fee = await (new BN(receipt1.receipt.gasUsed).mul(gasPrice));
+
+                await assert.equal(
+                    balanceAfter.toString(),
+                    (new BN(balanceBefore)).add(this.depositedStake).add(rewarded).sub(new BN(fee)).toString()
+                );
 
                 var timeJump = await (5 + this.freezedTimestamp1);
+                await advanceBlockAndSetTime(timeJump);
                 
                 var eventTime = await freezedTimestamp2.toString();
                 expectEvent(receipt1, 'Withdraw', {
                     user: anotherAccount1,
-                    // value: this.depositedStake,
+                    value: this.depositedStake.add(rewarded),
                     timestamp: eventTime
                 });
                 expectEvent(receipt1, 'RemoveStakeholder', {
                     target: anotherAccount1,
-                    // value: this.depositedStake,
+                    value: this.depositedStake.add(rewarded),
                     timestamp: eventTime
                 });
                 expectEvent(receipt1, 'Transfer', {
                     target: anotherAccount1,
-                    // value: this.depositedStake,
+                    value: this.depositedStake.add(rewarded),
                     timestamp: eventTime
                 });
+
                 expectEvent(receipt1, 'Receive', {
                     from: this.vaultInst.address,
-                    // value: "0",
+                    value: rewarded,
                     timestamp: eventTime
                 });
-                await advanceBlockAndSetTime(timeJump);
 
                 var remainder = new BN(0);
                 
@@ -1054,7 +1072,7 @@ contract('JoysStaking', function (accounts) {
                 );
                 await assert.equal(
                     (await this.joysStakingInst.rewardsOf(anotherAccount1)).toString(),
-                    remainder.toString()
+                    rewarded.toString()
                 );
                 await assert.equal(
                     (await this.joysStakingInst.clearStakeOf(anotherAccount1)).toString(),
