@@ -7,9 +7,9 @@ module.exports = async function(deployer, network, accounts) {
   let newNextStakeholdersLimit;
 
   if (network == "toys") {
-    newMinimalStake = web3.utils.toWei("100",'ether');
-    newStartedStakeholdersLimit = "4";
-    newNextStakeholdersLimit = "5";
+    newMinimalStake = web3.utils.toWei("521000",'ether');
+    newStartedStakeholdersLimit = "10";
+    newNextStakeholdersLimit = "11";
   } else
   if (network == "joys-test") {
     newMinimalStake = web3.utils.toWei("100",'ether');

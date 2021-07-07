@@ -30,3 +30,5 @@ idea/
 build/
 bin/
 .DS_Store
+coverage.json
+runCoverageFor.sh

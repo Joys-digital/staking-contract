@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 // solhint-disable not-rely-on-time, reason-string
 
-pragma solidity ^0.6.12;
+pragma solidity 0.6.12;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "../interfaces/IStakingMechanics.sol";

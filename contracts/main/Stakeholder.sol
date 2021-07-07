@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 // solhint-disable not-rely-on-time, reason-string
 
-pragma solidity ^0.6.12;
+pragma solidity 0.6.12;
 pragma experimental ABIEncoderV2;
 
 import "./StakingMechanics.sol";
@@ -125,10 +125,10 @@ abstract contract Stakeholder is IStakeholder, StakingMechanics, StakingOwnable 
     }
 
     function __addStakeholder(address target, uint256 value) private {
-        require(target != address(0));
-        require(__nextStakeholder[target] == address(0));
-        require(__isStakeholder[target] == false);
-        require(value > 0);
+        require(target != address(0), "Stakeholder: zero address error");
+        require(target != GUARD, "Stakeholder: GUARD address error");
+        require(__isStakeholder[target] == false, "Stakeholder: is already a stakeholder");
+        require(value > 0, "Stakeholder: zero value error");
 
         // add stakeholder
         _addStake(target, value);
@@ -142,9 +142,9 @@ abstract contract Stakeholder is IStakeholder, StakingMechanics, StakingOwnable 
     }
 
     function __removeStakeholder(address target) private returns(uint256 removedStake) {
-        require(target != address(0));
-        require(__nextStakeholder[target] != address(0));
-        require(__isStakeholder[target] == true);
+        require(target != address(0), "Stakeholder: zero address error");
+        require(target != GUARD, "Stakeholder: GUARD address error");
+        require(__isStakeholder[target] == true, "Stakeholder: not a staker");
 
         // remove stakeholder
         removedStake = _clearStakeOf(target);
@@ -193,7 +193,6 @@ abstract contract Stakeholder is IStakeholder, StakingMechanics, StakingOwnable 
             }
             currentAddress = __nextStakeholder[currentAddress];
         }
-        revert("Stakeholder: error __findPrevStakeholder");
     }
     
 }
