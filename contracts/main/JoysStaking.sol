@@ -65,6 +65,7 @@ contract JoysStaking is IJoysStaking, Stakeholder, ReentrancyGuard {
         } else {
             (address w0rstStakeholder, uint256 worstStake) = _worstStakeholder();
             if (msg.value > worstStake) {
+                _recalculateStaker(w0rstStakeholder);
                 _addStakeholder(msg.sender, msg.value);
                 uint256 removedStake = _removeStakeholder(w0rstStakeholder);
                 _transfer(payable(w0rstStakeholder), removedStake);
