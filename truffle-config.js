@@ -55,7 +55,7 @@ module.exports = {
     mocha: {
       reporter: 'eth-gas-reporter',
       reporterOptions: {
-        excludeContracts: ['Migrations']
+        excludeContracts: ['Migrations', 'StakeholderMock']
       }
     },
     solc: {

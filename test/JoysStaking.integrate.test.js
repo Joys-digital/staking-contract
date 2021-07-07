@@ -1107,7 +1107,96 @@ contract('JoysStaking', function (accounts) {
                     await this.joysStakingInst.getNextStakeholder(GUARD),
                     GUARD
                 );
-            })
+            });
+
+            it('rotate pool position', async function () {
+                var withdrawAmount = await this.depositedStake;
+
+                await this.joysStakingInst.deposit({from: anotherAccount2, value: (new BN(minimalStake)).mul(new BN("3"))});
+                await this.joysStakingInst.deposit({from: anotherAccount3, value: (new BN(minimalStake)).mul(new BN("4"))});
+                await this.joysStakingInst.deposit({from: anotherAccount4, value: (new BN(minimalStake)).mul(new BN("2"))});
+
+                await this.joysStakingInst.withdraw(withdrawAmount, {from: anotherAccount1});
+
+                var worstStakeholder = await this.joysStakingInst.worstStakeholder();
+                await assert.equal(
+                    worstStakeholder[0],
+                    anotherAccount4
+                );
+                await assert.equal(
+                    await this.joysStakingInst.getNextStakeholder(GUARD),
+                    anotherAccount4
+                );
+                await assert.equal(
+                    await this.joysStakingInst.getNextStakeholder(anotherAccount4),
+                    anotherAccount2
+                );
+                await assert.equal(
+                    await this.joysStakingInst.getNextStakeholder(anotherAccount2),
+                    anotherAccount3
+                );
+                await assert.equal(
+                    await this.joysStakingInst.getNextStakeholder(anotherAccount3),
+                    GUARD
+                );
+
+                await this.joysStakingInst.withdraw((new BN(minimalStake)).mul(new BN("3")), {from: anotherAccount2});
+
+                var worstStakeholder = await this.joysStakingInst.worstStakeholder();
+                await assert.equal(
+                    worstStakeholder[0],
+                    anotherAccount4
+                );
+                await assert.equal(
+                    await this.joysStakingInst.getNextStakeholder(GUARD),
+                    anotherAccount4
+                );
+                await assert.equal(
+                    await this.joysStakingInst.getNextStakeholder(anotherAccount4),
+                    anotherAccount3
+                );
+                await assert.equal(
+                    await this.joysStakingInst.getNextStakeholder(anotherAccount3),
+                    GUARD
+                );
+
+                await this.joysStakingInst.withdraw((new BN(minimalStake)).mul(new BN("4")), {from: anotherAccount3});
+
+                var worstStakeholder = await this.joysStakingInst.worstStakeholder();
+                await assert.equal(
+                    worstStakeholder[0],
+                    anotherAccount4
+                );
+                await assert.equal(
+                    await this.joysStakingInst.getNextStakeholder(GUARD),
+                    anotherAccount4
+                );
+                await assert.equal(
+                    await this.joysStakingInst.getNextStakeholder(anotherAccount4),
+                    GUARD
+                );
+
+                await this.joysStakingInst.deposit({from: anotherAccount3, value: (new BN(minimalStake)).mul(new BN("4"))});
+                var worstStakeholder = await this.joysStakingInst.worstStakeholder();
+                await assert.equal(
+                    worstStakeholder[0],
+                    anotherAccount4
+                );
+                await assert.equal(
+                    await this.joysStakingInst.getNextStakeholder(GUARD),
+                    anotherAccount4
+                );
+                await assert.equal(
+                    await this.joysStakingInst.getNextStakeholder(anotherAccount4),
+                    anotherAccount3
+                );
+                await assert.equal(
+                    await this.joysStakingInst.getNextStakeholder(anotherAccount3),
+                    GUARD
+                );
+
+
+            });
         });
         describe('negative', function () {
             it('zero amount', async function () { 
