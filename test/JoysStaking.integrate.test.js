@@ -70,6 +70,7 @@ contract('JoysStaking', function (accounts) {
         this.vaultInst = await Vault.new();
         await this.vaultInst.send(minimalStake);
         this.joysStakingInst = await JoysStaking.new(minimalStake, stakeholdersLimit, nextStakeholdersLimit, this.vaultInst.address);
+        await this.vaultInst.transferOwnership(this.joysStakingInst.address);
 
         // check balances
         await assert.equal(
@@ -95,6 +96,10 @@ contract('JoysStaking', function (accounts) {
             await assert.equal(
                 await this.joysStakingInst.vault(),
                 this.vaultInst.address
+            );
+            await assert.equal(
+                await this.vaultInst.owner(),
+                this.joysStakingInst.address
             );
         });
         it('check empty storage', async function () {

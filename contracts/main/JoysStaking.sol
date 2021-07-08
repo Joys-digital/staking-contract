@@ -45,8 +45,6 @@ contract JoysStaking is IJoysStaking, Stakeholder, ReentrancyGuard {
         _stakeholdersLimit = newStartedStakeholdersLimit;
         _nextStakeholdersLimit = newNextStakeholdersLimit;
         _vault = newVault;
-
-        IVault(_vault).register();
     }
 
     receive() external payable {
