@@ -1,4 +1,4 @@
-# Joys staking smart contract
+# Joys staking contract
 
 [![Testing](https://github.com/Joys-digital/staking-contract/actions/workflows/testing.yaml/badge.svg)](https://github.com/Joys-digital/staking-contract/actions/workflows/testing.yaml)
 [![codecov](https://codecov.io/gh/Joys-digital/staking-contract/branch/master/graph/badge.svg?token=4B7AYDKXHS)](https://codecov.io/gh/Joys-digital/staking-contract)
@@ -8,49 +8,58 @@
 
 - Lang: Solidity v0.6.12
 
-- Project framework: truffle v5.3.7 (core: 5.3.7)
+- Project framework: truffle v5.3.14 (core: 5.3.14)
+
+- Nodejs: v14.17.0
 
 ## Overview
 
 ### Deployed
 
-< Coming soon >
+- Joys Digital Testnet: ```0x6b371524c7168ed33A3F44f37117B307D78703c2```
+- Joys Digital Mainnet: coming coon
+
+Staking Dapp: https://staking.joys.digital/
 
 ### Documentation
 
-< Coming soon >
-<!-- [Generated html documentation](https://joys.gitlab.io/joys-research/joys-sc-loyalty/contracts/) -->
+- [Generated html documentation](https://joys-digital.github.io/staking-contract/)
 
 ### Project structure:
 
 ```
 contracts
-├── Migrations.sol
 ├── interfaces
+│   ├── IJoysStaking.sol
+│   ├── IStakeholder.sol
+│   ├── IStakingMechanics.sol
 │   └── IVault.sol
 ├── main
 │   ├── JoysStaking.sol
 │   ├── Stakeholder.sol
 │   ├── StakingMechanics.sol
 │   └── Vault.sol
+├── mocks
+│   └── StakeholderMock.sol
 └── utils
     └── StakingOwnable.sol
 ```
 
-- __interface/__ - Interfaces for compatibility with other smart contracts
+- __interfaces/__ - Interfaces for compatibility with other smart contracts
 
 - __main/__ - Core contracts of the system
 
 - __utils/__ - Auxiliary contacts
 
-### Architecture
+### How it works
 
-<!-- ![inheritance picture 1](./img/architecture.png) -->
-< Coming soon >
+![architecture picture](./img/architecture.png)
 
 ## Installation & Usage
 
-Install all packages
+1. Install truffle
+
+2. Install all packages
 ```
 npm i --save-dev
 ```
@@ -63,12 +72,12 @@ npm run build
 
 ### Testing
 
-run ganache-cli with port 8545
 ```
 npm test
 ```
 
 ### Test coverage
+
 ```
 npm run coverage
 ```
@@ -79,6 +88,13 @@ npm run coverage
 npm run lint
 ```
 
+### Deploy
+
+edit network in ```truffle-config.js```
+```
+truffle migrate --f 2 --network <network name>
+```
+
 ## License
 
-MIT License
+[MIT License](./LICENSE)

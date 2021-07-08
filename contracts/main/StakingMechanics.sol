@@ -8,7 +8,7 @@ import "../interfaces/IStakingMechanics.sol";
 import "../interfaces/IVault.sol";
 
 /**
- * @dev Staking mechanics contract
+ * @dev Staking mechanics module
  */
 abstract contract StakingMechanics is IStakingMechanics {
     using SafeMath for uint256;

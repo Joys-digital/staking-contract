@@ -9,7 +9,7 @@ import "../interfaces/IJoysStaking.sol";
 import "./Stakeholder.sol";
 
 /**
- * @dev Joys Main staking contract
+ * @dev Main staking contract
  */
 contract JoysStaking is IJoysStaking, Stakeholder, ReentrancyGuard {
 
@@ -24,6 +24,12 @@ contract JoysStaking is IJoysStaking, Stakeholder, ReentrancyGuard {
 
     uint256 internal _minimalStake;
 
+    /**
+     * @param newMinimalStake minimum bet limit, cannot be changed
+     * @param newStartedStakeholdersLimit initial stakeholder limit
+     * @param newNextStakeholdersLimit stakeholder limit after update
+     * @param newVault address of the deployed Vault contract
+     */
     constructor(uint256 newMinimalStake, uint256 newStartedStakeholdersLimit, uint256 newNextStakeholdersLimit, address newVault) public nonReentrant {
         require(newMinimalStake > 0, "JoysStaking: 'newMinimalStake' arg error");
         require(newStartedStakeholdersLimit > 0, "JoysStaking: 'newStartedStakeholdersLimit' arg error");
@@ -39,14 +45,18 @@ contract JoysStaking is IJoysStaking, Stakeholder, ReentrancyGuard {
         _stakeholdersLimit = newStartedStakeholdersLimit;
         _nextStakeholdersLimit = newNextStakeholdersLimit;
         _vault = newVault;
-
-        IVault(_vault).register();
     }
 
     receive() external payable {
         emit Receive(msg.sender, msg.value, block.timestamp);
     }
 
+    /**
+     * @dev Sends native currency to increase staking deposit.
+     * The total amount of position must be greater than the minimum limit.
+     * If stakeholder limit is exceeded, need to outbid stake of the worst stakeholder.
+     * @return success
+     */
     function deposit() external payable nonReentrant override returns (bool success) {
         require(msg.value > 0, "JoysStaking: value must not be zero");
 
@@ -79,6 +89,11 @@ contract JoysStaking is IJoysStaking, Stakeholder, ReentrancyGuard {
         return true;
     }
 
+    /**
+     * @dev Decreases staking deposit.
+     * If the final deposit becomes less than the minimum, the position will be completely closed
+     * @return success
+     */
     function withdraw(uint256 amount) external nonReentrant override returns (bool success) {
         require(amount > 0, "JoysStaking: amount must not be zero");
         require(_isStakeholder(msg.sender), "JoysStaking: user must be a stakeholder");
@@ -101,6 +116,11 @@ contract JoysStaking is IJoysStaking, Stakeholder, ReentrancyGuard {
         return true;
     }
 
+    /**
+     * @dev Closes position.
+     * Only for admins.
+     * @return success
+     */
     function emergencyClosePosition(address payable target) external nonReentrant onlyOwner override returns(bool success) {
         require(_isStakeholder(target), "JoysStaking: target must be a stakeholder");
 
