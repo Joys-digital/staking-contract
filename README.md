@@ -8,7 +8,9 @@
 
 - Lang: Solidity v0.6.12
 
-- Project framework: truffle v5.3.7 (core: 5.3.7)
+- Project framework: truffle v5.3.14 (core: 5.3.14)
+
+- Nodejs: v14.17.0
 
 ## Overview
 
@@ -55,7 +57,9 @@ contracts
 
 ## Installation & Usage
 
-Install all packages
+1. Install truffle
+
+2. Install all packages
 ```
 npm i --save-dev
 ```

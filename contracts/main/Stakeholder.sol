@@ -9,7 +9,7 @@ import "../interfaces/IStakeholder.sol";
 import "../utils/StakingOwnable.sol";
 
 /**
- * @dev Stakeholder system contract
+ * @dev Stakeholder system module
  */
 abstract contract Stakeholder is IStakeholder, StakingMechanics, StakingOwnable {
 

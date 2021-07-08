@@ -6,9 +6,6 @@ pragma experimental ABIEncoderV2;
 
 import "../main/Stakeholder.sol";
 
-/**
- * @dev Stakeholder system contract
- */
 contract StakeholderMock is Stakeholder {
 
     constructor(uint256 newStartedStakeholdersLimit, uint256 newNextStakeholdersLimit) public {
