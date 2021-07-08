@@ -17,7 +17,7 @@
 ### Deployed
 
 - Joys Digital Testnet: ```0x6b371524c7168ed33A3F44f37117B307D78703c2```
-- Joys Digital Mainnet: coming coon
+- Joys Digital Mainnet: coming soon
 
 Staking Dapp: https://staking.joys.digital/
 
@@ -47,7 +47,7 @@ contracts
 
 - __interfaces/__ - Interfaces for compatibility with other smart contracts
 
-- __main/__ - Core contracts of the system
+- __main/__ - Main contracts
 
 - __utils/__ - Auxiliary contacts
 
