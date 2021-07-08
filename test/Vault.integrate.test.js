@@ -18,13 +18,14 @@ contract('Vault', function (accounts) {
   beforeEach(async function () {
     this.vaultInst = await Vault.new();
     this.joysStakingInst = await JoysStaking.new(minimalStake, stakeholdersLimit, nextStakeholdersLimit, this.vaultInst.address);
+    await this.vaultInst.transferOwnership(this.joysStakingInst.address);
   });
 
 
   describe('positive', function () {
     it('correct staking contract', async function () {
       await assert.equal(
-        await this.vaultInst.stakingContract(),
+        await this.vaultInst.owner(),
         this.joysStakingInst.address
       );
     });
@@ -33,19 +34,26 @@ contract('Vault', function (accounts) {
   describe('negative', function () {
     it('already registered', async function () {
       await expectRevert(
-        this.vaultInst.register({from: owner}),
-        'Vault: already registered'
+        this.vaultInst.transferOwnership(other, {from: owner}),
+        'StakingOwnable: caller is not the owner'
+      );
+      await expectRevert(
+        this.vaultInst.transferOwnership(owner, {from: other}),
+        'StakingOwnable: caller is not the owner'
       );
     });
     it('access error', async function () {
       await expectRevert(
         this.vaultInst.vaultWithdraw("100", {from: owner}),
-        'Vault: access error'
+        'StakingOwnable: caller is not the owner'
+      );
+      await expectRevert(
+        this.vaultInst.vaultWithdraw("100", {from: other}),
+        'StakingOwnable: caller is not the owner'
       );
     });
     it('insufficient funds', async function () {
       var vault = await Vault.new();
-      await vault.register({from: owner});
 
       await expectRevert(
         vault.vaultWithdraw("100", {from: owner}),

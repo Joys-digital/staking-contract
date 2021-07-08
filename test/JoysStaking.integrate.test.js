@@ -10,29 +10,6 @@ const GUARD = "0x0000000000000000000000000000000000000001";
 const Vault = artifacts.require("Vault");
 const JoysStaking = artifacts.require("JoysStaking");
 
-function weiFormat(value) {
-    return web3.utils.toWei(value,'ether');
-}
-
-function etherFormat(value) {
-    return web3.utils.fromWei(value,'ether');
-}
-
-function encodePurchaseIn(param1, param2) {
-    let result = web3.eth.abi.encodeParameters(['uint256','uint256'], [weiFormat(param1), weiFormat(param2)])
-    return result;
-}
-
-function decodePurchaseOut(encodedData) {
-    let extractedRes = web3.eth.abi.decodeParameters(['uint256','uint256','uint256'], encodedData);
-    return [etherFormat(extractedRes['0']),etherFormat(extractedRes['1']),etherFormat(extractedRes['2'])];
-}
-
-function decodeUserOut(encodedData) {
-    let extractedUser = web3.eth.abi.decodeParameters(['bool','uint256','uint256','uint256'], encodedData);
-    return [extractedUser['0'],extractedUser['1'],etherFormat(extractedUser['2']),etherFormat(extractedUser['3'])];
-}
-
 const checkEmptyStakeholder = async (target, inst) => {
     await assert.equal(
         (await inst.stakeOf(target)).toString(),
@@ -93,6 +70,13 @@ contract('JoysStaking', function (accounts) {
         this.vaultInst = await Vault.new();
         await this.vaultInst.send(minimalStake);
         this.joysStakingInst = await JoysStaking.new(minimalStake, stakeholdersLimit, nextStakeholdersLimit, this.vaultInst.address);
+        await this.vaultInst.transferOwnership(this.joysStakingInst.address);
+
+        // check balances
+        await assert.equal(
+            await web3.eth.getBalance(this.joysStakingInst.address),
+            (await this.joysStakingInst.totalClearStake()).toString()
+        );
     });
 
     describe('constructor', function () {
@@ -112,6 +96,10 @@ contract('JoysStaking', function (accounts) {
             await assert.equal(
                 await this.joysStakingInst.vault(),
                 this.vaultInst.address
+            );
+            await assert.equal(
+                await this.vaultInst.owner(),
+                this.joysStakingInst.address
             );
         });
         it('check empty storage', async function () {
@@ -172,12 +160,27 @@ contract('JoysStaking', function (accounts) {
         });
     });
 
+    // describe('receive', function () {
+    //     it('not vault', async function () {
+    //         await expectRevert(
+    //             this.joysStakingInst.send('1000'),
+    //             "JoysStaking: sender must be Vault"
+    //         );
+    //     });
+    // });
+
     describe('emergencyClosePosition', function () {
         describe('positive', function () {
             it('close position', async function () {
                 await this.joysStakingInst.deposit({from: anotherAccount1, value: minimalStake});
                 var freezedTimestamp1 = (await web3.eth.getBlock('latest')).timestamp;
                 
+                // check balances
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
+
                 var balanceBefore = await web3.eth.getBalance(anotherAccount1);
 
                 var receipt = await this.joysStakingInst.emergencyClosePosition(anotherAccount1, {from: owner});
@@ -185,6 +188,12 @@ contract('JoysStaking', function (accounts) {
                 var eventTime = freezedTimestamp2.toString();
                 var passedTime = freezedTimestamp2 - freezedTimestamp1;
                 var rewarded = (new BN(REVARD_PER_SECOND)).mul(new BN(passedTime));
+
+                // check balances
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
 
                 expectEvent(receipt, 'SubStake', {
                     staker: anotherAccount1,
@@ -210,9 +219,6 @@ contract('JoysStaking', function (accounts) {
                     timestamp: eventTime
                 });
 
-                // // timeJump
-                // var passedTime = freezedTimestamp2 - freezedTimestamp1 + 1;
-                // await advanceBlockAndSetTime(freezedTimestamp1 + passedTime);
                 var balanceAfter = await web3.eth.getBalance(anotherAccount1);
 
                 await assert.equal(
@@ -325,6 +331,13 @@ contract('JoysStaking', function (accounts) {
                 await checkEmptyStakeholder(anotherAccount1, this.joysStakingInst);
 
                 var receipt = await this.joysStakingInst.deposit({from: anotherAccount1, value: minimalStake});
+
+                // check balances
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
+
                 var eventTime = ((await web3.eth.getBlock('latest')).timestamp).toString();
                 expectEvent(receipt, 'Deposit', {
                     user: anotherAccount1,
@@ -413,6 +426,13 @@ contract('JoysStaking', function (accounts) {
                 // check acc 1
                 var receipt = await this.joysStakingInst.deposit({from: anotherAccount1, value: (new BN(minimalStake)).toString()});
                 var freezedTimestamp1 = (await web3.eth.getBlock('latest')).timestamp;
+
+                // check balances
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
+
                 var eventTime = await freezedTimestamp1.toString();
                 expectEvent(receipt, 'Deposit', {
                     user: anotherAccount1,
@@ -461,6 +481,13 @@ contract('JoysStaking', function (accounts) {
                 // check acc 2
                 var receipt = await this.joysStakingInst.deposit({from: anotherAccount2, value: ((new BN(minimalStake)).mul(new BN(3))).toString()});
                 var freezedTimestamp2 = (await web3.eth.getBlock('latest')).timestamp;
+
+                // check balances
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
+
                 var eventTime = await freezedTimestamp2.toString();
                 expectEvent(receipt, 'Deposit', {
                     user: anotherAccount2,
@@ -505,6 +532,13 @@ contract('JoysStaking', function (accounts) {
                 // check acc 3
                 var receipt = await this.joysStakingInst.deposit({from: anotherAccount3, value: (new BN(minimalStake)).mul(new BN(2)).toString()});
                 var freezedTimestamp2 = (await web3.eth.getBlock('latest')).timestamp;
+
+                // check balances
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
+
                 var eventTime = await freezedTimestamp2.toString();
                 expectEvent(receipt, 'Deposit', {
                     user: anotherAccount3,
@@ -525,6 +559,11 @@ contract('JoysStaking', function (accounts) {
                 });
 
                 await advanceBlockAndSetTime(freezedTimestamp2 + 12);
+                // check balances
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
                 await assert.equal(
                     (await this.joysStakingInst.lastUpdateAt(anotherAccount3)).toString(),
                     freezedTimestamp2.toString()
@@ -584,6 +623,13 @@ contract('JoysStaking', function (accounts) {
 
                 var receipt1 = await this.joysStakingInst.deposit({from: anotherAccount1, value: minimalStake});
                 var freezedTimestamp1 = (await web3.eth.getBlock('latest')).timestamp;
+
+                // check balances
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
+
                 var eventTime = await freezedTimestamp1.toString();
                 expectEvent(receipt1, 'Deposit', {
                     user: anotherAccount1,
@@ -607,6 +653,13 @@ contract('JoysStaking', function (accounts) {
 
                 var receipt2 = await this.joysStakingInst.deposit({from: anotherAccount1, value: value2});
                 var freezedTimestamp2 = (await web3.eth.getBlock('latest')).timestamp;
+
+                // check balances
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
+
                 var eventTime = await freezedTimestamp2.toString();
 
                 // calculating reward
@@ -636,6 +689,12 @@ contract('JoysStaking', function (accounts) {
                 var expected = new BN(REVARD_PER_SECOND).mul(new BN(1));
 
                 await advanceBlockAndSetTime(timeJump);
+
+                // check balances
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );                
 
                 await assert.equal(
                     (await this.joysStakingInst.stakeOf(anotherAccount1)).toString(),
@@ -703,10 +762,22 @@ contract('JoysStaking', function (accounts) {
                 var freezedTimestamp1 = (await web3.eth.getBlock('latest')).timestamp;
                 var receipt4 = await this.joysStakingInst.deposit({from: anotherAccount4, value: (new BN(minimalStake)).mul(new BN("3"))});
 
+                // check balances
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
+
                 var balanceBefore = await web3.eth.getBalance(anotherAccount3);
                 var receipt5 = await this.joysStakingInst.deposit({from: anotherAccount5, value: (new BN(minimalStake)).mul(new BN("3"))});
                 var balanceAfter = await web3.eth.getBalance(anotherAccount3);
                 var freezedTimestamp3 = (await web3.eth.getBlock('latest')).timestamp;
+
+                // check balances
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );                
                 
                 var passedTime = freezedTimestamp3 - freezedTimestamp1;
                 var rewarded = (new BN(REVARD_PER_SECOND)).mul(new BN(passedTime));
@@ -744,6 +815,12 @@ contract('JoysStaking', function (accounts) {
                 
                 var timeJump = await (freezedTimestamp1 + 1);
                 await advanceBlockAndSetTime(timeJump);
+
+                // check balances
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
 
                 await assert.equal(
                     (await this.joysStakingInst.stakeOf(anotherAccount3)).toString(),
@@ -817,6 +894,11 @@ contract('JoysStaking', function (accounts) {
             this.depositedStake = await ((new BN(minimalStake)).add((new BN(minimalStake)).div(new BN(2))));
             await this.joysStakingInst.deposit({from: anotherAccount1, value: this.depositedStake});
             this.freezedTimestamp1 = (await web3.eth.getBlock('latest')).timestamp;
+
+            await assert.equal(
+                await web3.eth.getBalance(this.joysStakingInst.address),
+                (await this.joysStakingInst.totalClearStake()).toString()
+            );
         });
         describe('positive', function () {
             it('part-single', async function () {
@@ -825,6 +907,11 @@ contract('JoysStaking', function (accounts) {
                 var balanceBefore = await web3.eth.getBalance(anotherAccount1);
                 var receipt1 = await this.joysStakingInst.withdraw(withdrawAmount, {from: anotherAccount1});
                 var freezedTimestamp2 = (await web3.eth.getBlock('latest')).timestamp;
+
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
 
                 var passedTime = freezedTimestamp2 - this.freezedTimestamp1;
                 var rewarded = (new BN(REVARD_PER_SECOND)).mul(new BN(passedTime));
@@ -929,6 +1016,11 @@ contract('JoysStaking', function (accounts) {
                 var receipt1 = await this.joysStakingInst.withdraw(withdrawAmount, {from: anotherAccount1});
                 var freezedTimestamp2 = (await web3.eth.getBlock('latest')).timestamp;
 
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
+
                 var passedTime = freezedTimestamp2 - this.freezedTimestamp1;
                 var rewarded = (new BN(REVARD_PER_SECOND)).mul(new BN(passedTime));
 
@@ -964,6 +1056,11 @@ contract('JoysStaking', function (accounts) {
                 
                 var timeJump = await (freezedTimestamp2 + 5);
                 await advanceBlockAndSetTime(timeJump);
+
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
 
                 var remainder = new BN(0);
                 
@@ -1022,6 +1119,11 @@ contract('JoysStaking', function (accounts) {
                 var receipt1 = await this.joysStakingInst.withdraw(withdrawAmount, {from: anotherAccount1});
                 var freezedTimestamp2 = (await web3.eth.getBlock('latest')).timestamp;
 
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
+
                 var passedTime = freezedTimestamp2 - this.freezedTimestamp1;
                 var rewarded = (new BN(REVARD_PER_SECOND)).mul(new BN(passedTime));
 
@@ -1036,6 +1138,11 @@ contract('JoysStaking', function (accounts) {
 
                 var timeJump = await (5 + this.freezedTimestamp1);
                 await advanceBlockAndSetTime(timeJump);
+
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
                 
                 var eventTime = await freezedTimestamp2.toString();
                 expectEvent(receipt1, 'Withdraw', {
@@ -1118,6 +1225,11 @@ contract('JoysStaking', function (accounts) {
 
                 await this.joysStakingInst.withdraw(withdrawAmount, {from: anotherAccount1});
 
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
+
                 var worstStakeholder = await this.joysStakingInst.worstStakeholder();
                 await assert.equal(
                     worstStakeholder[0],
@@ -1142,6 +1254,11 @@ contract('JoysStaking', function (accounts) {
 
                 await this.joysStakingInst.withdraw((new BN(minimalStake)).mul(new BN("3")), {from: anotherAccount2});
 
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
+
                 var worstStakeholder = await this.joysStakingInst.worstStakeholder();
                 await assert.equal(
                     worstStakeholder[0],
@@ -1162,6 +1279,11 @@ contract('JoysStaking', function (accounts) {
 
                 await this.joysStakingInst.withdraw((new BN(minimalStake)).mul(new BN("4")), {from: anotherAccount3});
 
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
+
                 var worstStakeholder = await this.joysStakingInst.worstStakeholder();
                 await assert.equal(
                     worstStakeholder[0],
@@ -1177,6 +1299,12 @@ contract('JoysStaking', function (accounts) {
                 );
 
                 await this.joysStakingInst.deposit({from: anotherAccount3, value: (new BN(minimalStake)).mul(new BN("4"))});
+
+                await assert.equal(
+                    await web3.eth.getBalance(this.joysStakingInst.address),
+                    (await this.joysStakingInst.totalClearStake()).toString()
+                );
+
                 var worstStakeholder = await this.joysStakingInst.worstStakeholder();
                 await assert.equal(
                     worstStakeholder[0],
