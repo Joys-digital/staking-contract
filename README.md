@@ -17,7 +17,7 @@
 ### Deployed
 
 - Joys Digital Testnet: ```0x6b371524c7168ed33A3F44f37117B307D78703c2```
-- Joys Digital Mainnet: coming soon
+- Joys Digital Mainnet: ```0x1996EAf7ffC6B70603606E1d6059F4e11Ee9E6d9```
 
 Staking Dapp: https://staking.joys.digital/
 
