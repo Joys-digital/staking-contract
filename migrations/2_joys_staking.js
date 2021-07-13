@@ -11,12 +11,7 @@ module.exports = async function(deployer, network, accounts) {
     newStartedStakeholdersLimit = "10";
     newNextStakeholdersLimit = "11";
   } else
-  if (network == "joys-test") {
-    newMinimalStake = web3.utils.toWei("100",'ether');
-    newStartedStakeholdersLimit = "4";
-    newNextStakeholdersLimit = "5";
-  } else
-  if (network == "joys-production") {
+  if (network == "joysPoas") {
     newMinimalStake = web3.utils.toWei("521000",'ether');
     newStartedStakeholdersLimit = "50";
     newNextStakeholdersLimit = "100";
@@ -32,6 +27,6 @@ module.exports = async function(deployer, network, accounts) {
   await deployer.deploy(JoysStaking, newMinimalStake, newStartedStakeholdersLimit, newNextStakeholdersLimit, vaultAddress);
   let joysStakingAddress = (await JoysStaking.deployed()).address;
 
-  (await Vault.at(vaultAddress)).transferOwnership(joysStakingAddress);
+  await (Vault.at(vaultAddress)).transferOwnership(joysStakingAddress);
 
 };
