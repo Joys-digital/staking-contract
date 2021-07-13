@@ -27,6 +27,6 @@ module.exports = async function(deployer, network, accounts) {
   await deployer.deploy(JoysStaking, newMinimalStake, newStartedStakeholdersLimit, newNextStakeholdersLimit, vaultAddress);
   let joysStakingAddress = (await JoysStaking.deployed()).address;
 
-  await (Vault.at(vaultAddress)).transferOwnership(joysStakingAddress);
+  await (await Vault.at(vaultAddress)).transferOwnership(joysStakingAddress);
 
 };
