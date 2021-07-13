@@ -57,7 +57,7 @@ contract JoysStaking is IJoysStaking, Stakeholder, ReentrancyGuard {
      * If stakeholder limit is exceeded, need to outbid stake of the worst stakeholder.
      * @return success
      */
-    function deposit() external payable nonReentrant override returns (bool success) {
+    function deposit() external payable nonReentrant override returns(bool success) {
         require(msg.value > 0, "JoysStaking: value must not be zero");
 
         _recalculateStaker(msg.sender);
@@ -76,9 +76,9 @@ contract JoysStaking is IJoysStaking, Stakeholder, ReentrancyGuard {
             (address w0rstStakeholder, uint256 worstStake) = _worstStakeholder();
             if (msg.value > worstStake) {
                 _recalculateStaker(w0rstStakeholder);
-                _addStakeholder(msg.sender, msg.value);
                 uint256 removedStake = _removeStakeholder(w0rstStakeholder);
                 _transfer(payable(w0rstStakeholder), removedStake);
+                _addStakeholder(msg.sender, msg.value);
 
                 emit Drop(msg.sender, w0rstStakeholder, worstStake, block.timestamp);
             } else {
@@ -94,7 +94,7 @@ contract JoysStaking is IJoysStaking, Stakeholder, ReentrancyGuard {
      * If the final deposit becomes less than the minimum, the position will be completely closed
      * @return success
      */
-    function withdraw(uint256 amount) external nonReentrant override returns (bool success) {
+    function withdraw(uint256 amount) external nonReentrant override returns(bool success) {
         require(amount > 0, "JoysStaking: amount must not be zero");
         require(_isStakeholder(msg.sender), "JoysStaking: user must be a stakeholder");
 
@@ -129,7 +129,7 @@ contract JoysStaking is IJoysStaking, Stakeholder, ReentrancyGuard {
         uint256 removedStake = _removeStakeholder(target);
         _transfer(target, removedStake);
 
-        emit EmergencyClosePosition(owner(), target, removedStake, block.timestamp);
+        emit EmergencyClosePosition(msg.sender, target, removedStake, block.timestamp);
 
         return true;
     }
